@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.music_player {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+mat-icon {
+  font-size: 35px;
+  margin: 8px;
+  outline: none;
+}
+
+#playButton {
+  color: #5961fe;
+}
+
+#nextButton,
+#previousButton {
+  color: #c9c9c9;
+}
+
+.music_img {
+  width: 50px;
+  border-radius: 25%;
+}
+
+.music_info {
+  display: flex;
+}
+
+.music_article>* {
+  margin: 0;
+  margin-left: 10px;
+  text-align: center;
+}
+
+#music_name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#singer {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+}
+
+.music_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button_group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+mat-icon {
+  outline: none;
+}
+
+#music_process {
+  width: 300px;
+}
+
+#volume {
+  width: 150px;
+}
+
+
+.volume_root {
+  display: flex;
+  flex-direction: row;
+}
+
+.volume_icon {
+  margin-right: 15px;
+  color: #c9c9c9;
+  cursor: pointer;
+}
+
+.music_time {
+    position: absolute;
+    line-height: 0.3px;
+    margin-left: 15px;
+}
