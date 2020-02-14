@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "myproject-k18": {
+      "hosting": {
+        "Noobility": [
+          "myproject-k18"
+        ]
+      }
+    }
+  }
+}
