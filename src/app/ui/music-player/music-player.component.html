@@ -14,7 +14,7 @@
       <mat-icon id="previousButton">skip_previous</mat-icon>
     </button>
     <button>
-      <mat-icon id="playButton">play_circle_filled</mat-icon>
+      <mat-icon  (click)="changestatus_musicPlayer($event)" id="playButton">play_circle_filled</mat-icon>
     </button>
     <button>
       <mat-icon (click)="changestatus_musicPlayer($event)" id="nextButton">skip_next</mat-icon>
@@ -22,8 +22,8 @@
   </div>
 
   <div class="music_process_root">
-    <div class="music_time">00:00</div>
-    <mat-slider #silderMusic id="music_process"></mat-slider>
+  <div class="music_time">{{MusicTimeElapsed}}</div>
+    <mat-slider (value)="MusicProcess" id="music_process"></mat-slider>
   </div>
 
   <div class="volume_root">

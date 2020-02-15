@@ -10,6 +10,7 @@ import { SongTopHitComponent } from './song-top-hit/song-top-hit.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSliderModule} from '@angular/material/slider';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { AudioService } from '../service/audio.service';
 
 @NgModule({
   declarations: [ToolBarComponent, NavBarComponent, MusicPlayerComponent, TracksComponent, PlayListBoxComponent, PlayListTopHitComponent, SongTopHitComponent, SearchBarComponent],
@@ -27,5 +28,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     SongTopHitComponent,
     SearchBarComponent
   ],
+  providers:[AudioService]
 })
 export class UIModule { }
