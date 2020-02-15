@@ -1,10 +1,24 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
+::ng-deep .mat-accent .mat-slider-thumb {
+  background-color: #5961fe;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb-label {
+  background-color: #5961fe;
+}
+
+::ng-deep .mat-accent .mat-slider-track-fill {
+  background-color: #5961fe;
+}
+
 .music_player {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
 }
 
 button {
@@ -36,29 +50,32 @@ mat-icon {
 
 .music_info {
   display: flex;
+  position: relative;
 }
 
 .music_article>* {
   margin: 0;
   margin-left: 10px;
   text-align: center;
+
 }
 
 #music_name {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-size: 18px;
   font-weight: bold;
 }
 
 #singer {
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .music_article {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-height: 50px;
+  max-width: 200px;
 }
 
 .button_group {
@@ -92,7 +109,8 @@ mat-icon {
 }
 
 .music_time {
-    position: absolute;
-    line-height: 0.3px;
-    margin-left: 15px;
+  position: absolute;
+  line-height: 0.3px;
+  margin-left: 15px;
 }
+

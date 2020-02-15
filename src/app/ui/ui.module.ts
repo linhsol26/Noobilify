@@ -9,9 +9,10 @@ import { PlayListTopHitComponent } from './play-list-top-hit/play-list-top-hit.c
 import { SongTopHitComponent } from './song-top-hit/song-top-hit.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSliderModule} from '@angular/material/slider';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
-  declarations: [ToolBarComponent, NavBarComponent, MusicPlayerComponent, TracksComponent, PlayListBoxComponent, PlayListTopHitComponent, SongTopHitComponent],
+  declarations: [ToolBarComponent, NavBarComponent, MusicPlayerComponent, TracksComponent, PlayListBoxComponent, PlayListTopHitComponent, SongTopHitComponent, SearchBarComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -23,6 +24,8 @@ import {MatSliderModule} from '@angular/material/slider';
     TracksComponent,
     PlayListBoxComponent,
     PlayListTopHitComponent,
-    SongTopHitComponent],
+    SongTopHitComponent,
+    SearchBarComponent
+  ],
 })
 export class UIModule { }
