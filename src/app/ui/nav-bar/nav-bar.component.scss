@@ -1,0 +1,19 @@
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  padding: 20px;
+}
+
+button {
+  cursor: pointer;
+  padding: 20px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left: 0px;
+  border-color: #5961fe;
+  background-color: white;
+  outline: none;
+}
+

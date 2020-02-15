@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-music-player',
@@ -6,23 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./music-player.component.scss']
 })
 export class MusicPlayerComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
   }
 
 
-  changestatus_volunme(evt){
-    if(evt.target.innerText == 'volume_up') {
-      evt.target.innerText  = 'volume_off'
-    }else {
-      evt.target.innerText  = 'volume_up'
+  changestatus_volunme(evt) {
+    if (evt.target.innerText == 'volume_up') {
+      evt.target.innerText = 'volume_off'
+    } else {
+      evt.target.innerText = 'volume_up'
     }
   }
 
   changestatus_musicPlayer(evt) {
-
+    
   }
 
 }
