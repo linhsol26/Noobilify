@@ -3,14 +3,14 @@
     <div style="display: flex; align-items: center;">
       <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg" class="music_img">
     </div>
-    <div class="music_article">
-      <div id="music_name">Hãy trao cho anh</div>
-      <div id="singer">Sơn Tùng MTP</div>
+    <div class="music_article" *ngFor='let file of files; let i = index'>
+      <div id="music_name">{{ file.name }}</div>
+      <div id="singer">{{ file.artist }}</div>
     </div>
   </div>
 
   <div class="button_group">
-    <button>
+    <button [disabled]='isFirstPlaying()' (click)="previous()">
       <mat-icon id="previousButton">skip_previous</mat-icon>
     </button>
     <button>
@@ -22,8 +22,8 @@
   </div>
 
   <div class="music_process_root">
-    <div class="music_time">00:00</div>
-    <mat-slider id="music_process"></mat-slider>
+    <div class="music_time"></div>
+    <mat-slider id="music_process" class="time-slider"></mat-slider>
   </div>
 
   <div class="volume_root">

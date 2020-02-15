@@ -11,7 +11,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
-  declarations: [ToolBarComponent, NavBarComponent, MusicPlayerComponent, TracksComponent, PlayListBoxComponent, PlayListTopHitComponent, SongTopHitComponent],
+  declarations: [ToolBarComponent, NavBarComponent, MusicPlayerComponent,
+    TracksComponent, PlayListBoxComponent, PlayListTopHitComponent, SongTopHitComponent],
   imports: [
     CommonModule,
     MatIconModule,
