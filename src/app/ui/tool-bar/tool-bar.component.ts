@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
+import { NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'app-tool-bar',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tool-bar.component.scss']
 })
 export class ToolBarComponent  {
+  constructor(public changeThemes: NbThemeService) {
+
+  }
   items = [
     {
       title: 'Profile',
@@ -60,4 +64,12 @@ export class ToolBarComponent  {
       // ],
     },
   ];
+
+  changeTheme(event) {
+    if (event === true) {
+      this.changeThemes.changeTheme('default');
+    } else {
+      this.changeThemes.changeTheme('cosmic');
+    }
+  }
 }

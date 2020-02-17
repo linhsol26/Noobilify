@@ -8,7 +8,8 @@ import { PlayListBoxComponent } from './play-list-box/play-list-box.component';
 import { PlayListTopHitComponent } from './play-list-top-hit/play-list-top-hit.component';
 import { SongTopHitComponent } from './song-top-hit/song-top-hit.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule } from '@nebular/theme';
+// tslint:disable-next-line:max-line-length
+import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule, NbToggleModule } from '@nebular/theme';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
@@ -23,7 +24,8 @@ import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModu
     NbMenuModule,
     NbUserModule,
     NbIconModule,
-    NbSearchModule
+    NbSearchModule,
+    NbToggleModule
   ],
   exports: [ToolBarComponent,
     NavBarComponent,
