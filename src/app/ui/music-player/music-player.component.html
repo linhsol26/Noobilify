@@ -1,33 +1,17 @@
-<div class="music_player">
-  <div class="music_info">
-    <div style="display: flex; align-items: center;">
-      <img src="https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg" class="music_img">
-    </div>
-    <div class="music_article">
-      <div id="music_name">Hãy trao cho anh</div>
-      <div id="singer">Shawn Mendes, Camila Cabello</div>
-    </div>
-  </div>
+  <nb-card-body>
+    <nb-user
+      size="medium"
+      name="Song's Name"
+      title="Artis's Name"
+      picture="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80">
+    </nb-user>
+  </nb-card-body>
 
-  <div class="button_group">
-    <button>
-      <mat-icon id="previousButton">skip_previous</mat-icon>
-    </button>
-    <button>
-      <mat-icon id="playButton">play_circle_filled</mat-icon>
-    </button>
-    <button>
-      <mat-icon (click)="changestatus_musicPlayer($event)" id="nextButton">skip_next</mat-icon>
-    </button>
-  </div>
-
-  <div class="music_process_root">
-    <div class="music_time">00:00</div>
-    <mat-slider #silderMusic id="music_process"></mat-slider>
-  </div>
-
-  <div class="volume_root">
-    <button><mat-icon class="volume_icon" (click)="changestatus_volunme($event)">volume_up</mat-icon></button>
-    <mat-slider id="volume"></mat-slider>
-  </div>
-</div>
+<nb-card-body>
+  <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+  <nb-icon icon="play-circle-outline" status="warning"></nb-icon>
+  <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+</nb-card-body>
+<nb-icon icon="music-outline"></nb-icon>
+<nb-icon icon="repeat-outline"></nb-icon>
+<nb-icon icon="shuffle-outline"></nb-icon>

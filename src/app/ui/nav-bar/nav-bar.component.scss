@@ -4,25 +4,16 @@
   text-align: center;
   align-items: center;
   padding: 20px;
-  background-color: white;
 }
 
-button {
+nb-icon {
   cursor: pointer;
-  padding: 20px;
   outline: none;
   border-style: hidden;
-  background-color: white;
 }
 
-button:hover {
+nb-icon:hover {
   color: blue;
   transition: 0.5s;
-}
-
-@import url('https://fonts.googleapis.com/css?family=Kreon&display=swap');
-
-* {
-  font-family: 'Kreon', serif;
 }
 

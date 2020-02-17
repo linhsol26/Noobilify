@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UIModule } from './ui/ui.module';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbSidebarService, NbMenuModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -13,9 +15,14 @@ import { UIModule } from './ui/ui.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    UIModule
+    UIModule,
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbSidebarModule,
+    NbMenuModule.forRoot()
   ],
-  providers: [],
+  providers: [NbSidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

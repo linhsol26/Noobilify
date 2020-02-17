@@ -1,3 +1,18 @@
-<link href="https://fonts.googleapis.com/css?family=Kreon&display=swap" rel="stylesheet">
-<app-tool-bar></app-tool-bar>
-<router-outlet></router-outlet>
+<nb-layout>
+
+  <nb-layout-header fixed>
+    <app-nav-bar></app-nav-bar>
+  </nb-layout-header>
+
+  <nb-sidebar>
+    <app-tool-bar></app-tool-bar>
+  </nb-sidebar>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    <app-music-player></app-music-player>
+  </nb-layout-footer>
+
+</nb-layout>
