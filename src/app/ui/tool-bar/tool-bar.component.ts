@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -7,9 +8,9 @@ import { NbThemeService } from '@nebular/theme';
   styleUrls: ['./tool-bar.component.scss']
 })
 export class ToolBarComponent  {
-  constructor(public changeThemes: NbThemeService) {
+
+  constructor(public changeThemes: NbThemeService, public authService: AuthService) {
   }
-  isLogin = false;
   items = [
     {
       icon: 'person-outline',
