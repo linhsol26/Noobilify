@@ -29,6 +29,14 @@ export class PlayListTopHitComponent implements OnInit {
       source: '../../../assets/img-test-1.jpg',
       title: 'Song',
     },
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
   ];
 
   ngOnInit() {

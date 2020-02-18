@@ -17,7 +17,7 @@ export class NavBarComponent {
       });
   }
 
-  toPath() {
-    this.router.navigateByUrl('/newmusic');
+  toPath(path) {
+    this.router.navigateByUrl(path);
   }
 }

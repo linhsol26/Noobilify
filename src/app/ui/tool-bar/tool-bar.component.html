@@ -1,12 +1,19 @@
-<nb-user style="justify-content: center;"
+<div *ngIf="isLogin">
+  <nb-user style="justify-content: center;"
              size="large"
              name="John Doe"
              title="johndoe@gmail.com"
              picture="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
              onlyPicture>
-    </nb-user>
-<p>John Doe</p>
-<p>johndoe@gmail.com</p>
+  </nb-user>
+  <p>John Doe</p>
+  <p>johndoe@gmail.com</p>
+</div>
+
+<div *ngIf="!isLogin">
+  <button nbButton status="info" (click)="loginWithGoogle()">Login</button>
+</div> <!-- lay cua con GOOGLE -->
+
 <br>
 <nb-menu [items]="items" autoCollapse="true">
 </nb-menu>

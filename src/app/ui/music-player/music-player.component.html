@@ -10,7 +10,7 @@
 <nb-card-body *ngIf="!isPlaying" >
   <nb-icon icon="shuffle-outline" style="margin-right: 5%;"></nb-icon>
   <nb-icon icon="arrow-ios-back-outline" (click)="previusMusic()" style="margin-right: 2%"></nb-icon>
-  <nb-icon icon="play-circle-outline" (click)="playMusic()" status="warning"></nb-icon>
+  <nb-icon icon="play-circle" status="basic" [options]="{ animation: { type: 'zoom' } }" (click)="playMusic()"></nb-icon>
   <nb-icon icon="arrow-ios-forward-outline" (click)="nextMusic()" style="margin-left: 2%"></nb-icon>
   <nb-icon icon="repeat-outline" style="margin-left: 5%"></nb-icon>
   <nb-icon icon="music-outline" style="margin-left: 60%"></nb-icon>
@@ -19,7 +19,7 @@
 <nb-card-body *ngIf="isPlaying" >
   <nb-icon icon="shuffle-outline" style="margin-right: 5%;"></nb-icon>
   <nb-icon icon="arrow-ios-back-outline" (click)="previusMusic()" style="margin-right: 2%"></nb-icon>
-  <nb-icon icon="pause-circle-outline" (click)="playMusic()" status="warning"></nb-icon>
+  <nb-icon icon="pause-circle" status="basic" [options]="{ animation: { type: 'zoom' } }" (click)="playMusic()"></nb-icon>
   <nb-icon icon="arrow-ios-forward-outline" (click)="nextMusic()" style="margin-left: 2%"></nb-icon>
   <nb-icon icon="repeat-outline" style="margin-left: 5%"></nb-icon>
   <nb-icon icon="music-outline" style="margin-left: 60%"></nb-icon>

@@ -8,10 +8,11 @@ import { NbThemeService } from '@nebular/theme';
 })
 export class ToolBarComponent  {
   constructor(public changeThemes: NbThemeService) {
-
   }
+  isLogin = false;
   items = [
     {
+      icon: 'person-outline',
       title: 'Profile',
       expanded: true,
       children: [
@@ -30,6 +31,7 @@ export class ToolBarComponent  {
       ],
     },
     {
+      icon: 'headphones-outline',
       title: 'Playlist',
       children: [
         {
@@ -47,6 +49,7 @@ export class ToolBarComponent  {
       ],
     },
     {
+      icon: 'heart-outline',
       title: 'Favorite Songs',
       // children: [
       //   {
