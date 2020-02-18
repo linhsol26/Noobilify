@@ -5,11 +5,11 @@
 @include nb-install() {
   @include nb-theme-global();
 };
-@import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
-
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Dancing Script', cursive;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Dancing Script', cursive;
+}

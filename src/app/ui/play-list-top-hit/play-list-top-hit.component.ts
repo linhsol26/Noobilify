@@ -8,6 +8,28 @@ import { Component, OnInit } from '@angular/core';
 export class PlayListTopHitComponent implements OnInit {
 
   constructor() { }
+  imgSource = [
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
+    {
+      source: '../../../assets/img-test-1.jpg',
+      title: 'Song',
+    },
+  ];
 
   ngOnInit() {
   }

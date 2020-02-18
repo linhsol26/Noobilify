@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { PlayListRoutingModule } from './play-list-routing.module';
 import { PlayListComponent } from './play-list.component';
-import { NbButtonModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -11,7 +10,6 @@ import { NbButtonModule } from '@nebular/theme';
   imports: [
     CommonModule,
     PlayListRoutingModule,
-    NbButtonModule
   ]
 })
 export class PlayListModule { }
