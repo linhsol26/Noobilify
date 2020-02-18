@@ -8,9 +8,9 @@
   </nb-card-body>
 
 <nb-card-body>
-  <nb-icon icon="arrow-ios-back-outline"></nb-icon>
-  <nb-icon icon="play-circle-outline" status="warning"></nb-icon>
-  <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+  <nb-icon (click)="previusMusic()" icon="arrow-ios-back-outline"></nb-icon>
+  <nb-icon (click)="playMusic()" icon="play-circle-outline" status="warning"></nb-icon>
+  <nb-icon (click)="nextMusic()" icon="arrow-ios-forward-outline"></nb-icon>
 </nb-card-body>
 <nb-icon icon="music-outline"></nb-icon>
 <nb-icon icon="repeat-outline"></nb-icon>

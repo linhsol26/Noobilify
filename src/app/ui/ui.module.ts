@@ -9,6 +9,7 @@ import { PlayListTopHitComponent } from './play-list-top-hit/play-list-top-hit.c
 import { SongTopHitComponent } from './song-top-hit/song-top-hit.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule } from '@nebular/theme';
+import { AudioService } from '../service/audio.service';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
