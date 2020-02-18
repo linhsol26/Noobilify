@@ -1,6 +1,8 @@
 import {
   Component, OnInit
 } from '@angular/core';
+import { AudioService } from 'src/app/service/audio.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-music-player',

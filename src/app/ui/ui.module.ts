@@ -34,5 +34,6 @@ import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModu
     SongTopHitComponent,
     SearchBarComponent,
   ],
+  providers:[AudioService]
 })
 export class UIModule { }
