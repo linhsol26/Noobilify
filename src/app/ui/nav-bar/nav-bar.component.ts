@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbSearchService } from '@nebular/theme/';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,11 +10,14 @@ import { NbSearchService } from '@nebular/theme/';
 export class NavBarComponent {
   value = '';
 
-  constructor(private searchService: NbSearchService) {
-
+  constructor(private searchService: NbSearchService, public router: Router) {
     this.searchService.onSearchSubmit()
       .subscribe((data: any) => {
         this.value = data.term;
       });
+  }
+
+  toPath() {
+    this.router.navigateByUrl('/newmusic');
   }
 }
