@@ -7,17 +7,23 @@ import { TracksComponent } from './tracks/tracks.component';
 import { PlayListBoxComponent } from './play-list-box/play-list-box.component';
 import { PlayListTopHitComponent } from './play-list-top-hit/play-list-top-hit.component';
 import { SongTopHitComponent } from './song-top-hit/song-top-hit.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatSliderModule} from '@angular/material/slider';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { AudioService } from '../service/audio.service';
+import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule } from '@nebular/theme';
 
 @NgModule({
-  declarations: [ToolBarComponent, NavBarComponent, MusicPlayerComponent, TracksComponent, PlayListBoxComponent, PlayListTopHitComponent, SongTopHitComponent, SearchBarComponent],
+  // tslint:disable-next-line:max-line-length
+  declarations: [ToolBarComponent, NavBarComponent,
+    MusicPlayerComponent, ToolBarComponent,
+    TracksComponent, PlayListBoxComponent,
+    PlayListTopHitComponent, SongTopHitComponent, SearchBarComponent],
   imports: [
     CommonModule,
-    MatIconModule,
-    MatSliderModule
+    NbSidebarModule,
+    NbCardModule,
+    NbMenuModule,
+    NbUserModule,
+    NbIconModule,
+    NbSearchModule
   ],
   exports: [ToolBarComponent,
     NavBarComponent,
@@ -26,7 +32,7 @@ import { AudioService } from '../service/audio.service';
     PlayListBoxComponent,
     PlayListTopHitComponent,
     SongTopHitComponent,
-    SearchBarComponent
+    SearchBarComponent,
   ],
   providers:[AudioService]
 })

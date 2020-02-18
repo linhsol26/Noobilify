@@ -6,14 +6,14 @@
   padding: 20px;
 }
 
-button {
+nb-icon {
   cursor: pointer;
-  padding: 20px;
-  border-top: 0px;
-  border-right: 0px;
-  border-left: 0px;
-  border-color: #5961fe;
-  background-color: white;
   outline: none;
+  border-style: hidden;
+}
+
+nb-icon:hover {
+  color: blue;
+  transition: 0.5s;
 }
 
