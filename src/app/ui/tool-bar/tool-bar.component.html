@@ -1,18 +1,22 @@
-<div *ngIf="isLogin">
-  <nb-user style="justify-content: center;"
-             size="large"
-             name="John Doe"
-             title="johndoe@gmail.com"
-             picture="https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-             onlyPicture>
-  </nb-user>
-  <p>John Doe</p>
-  <p>johndoe@gmail.com</p>
+<div *ngIf="authService.user$ | async; then authenticated else guest">
 </div>
+<ng-template #authenticated>
+  <div *ngIf="authService.user$ | async as user">
+    <nb-user style="justify-content: center;" size="large"
+      name={{user.displayName}}
+      title={{user.gmail}}
+      picture={{user.photoURL}}
+      onlyPicture>
+    </nb-user>
+    <button nbButton status="info" (click)="authService.logOut()">Log out</button>
+  </div>
+</ng-template>
 
-<div *ngIf="!isLogin">
-  <button nbButton status="info" (click)="loginWithGoogle()">Login</button>
-</div> <!-- lay cua con GOOGLE -->
+<ng-template #guest>
+  <div>
+    <button nbButton status="info" (click)="authService.loginWithGG()">Login</button>
+  </div> <!-- lay cua con GOOGLE -->
+</ng-template>
 
 <br>
 <nb-menu [items]="items" autoCollapse="true">

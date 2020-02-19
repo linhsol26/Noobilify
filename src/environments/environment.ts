@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyBJw5danGngP6KOKzSbqRxMzk8SsWiFECA',
+    authDomain: 'noobility-80bd0.firebaseapp.com',
+    databaseURL: 'https://noobility-80bd0.firebaseio.com',
+    projectId: 'noobility-80bd0',
+    storageBucket: 'noobility-80bd0.appspot.com',
+    messagingSenderId: '604292833472',
+    appId: '1:604292833472:web:676b5e98eb1beadf904d25',
+    measurementId: 'G-JBYTSVMF7Y'
+  }
 };
 
 /*
