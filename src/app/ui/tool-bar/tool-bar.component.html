@@ -4,11 +4,11 @@
   <div *ngIf="authService.user$ | async as user">
     <nb-user style="justify-content: center;" size="large"
       name={{user.displayName}}
-      title={{user.gmail}}
+      title={{user.email}}
       picture={{user.photoURL}}
-      onlyPicture>
+      >
     </nb-user>
-    <button nbButton status="info" (click)="authService.logOut()">Log out</button>
+    <button nbButton status="danger" (click)="authService.logOut()">Log out</button>
   </div>
 </ng-template>
 

@@ -9,7 +9,7 @@ import { PlayListTopHitComponent } from './play-list-top-hit/play-list-top-hit.c
 import { SongTopHitComponent } from './song-top-hit/song-top-hit.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 // tslint:disable-next-line:max-line-length
-import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule, NbToggleModule, NbListModule } from '@nebular/theme';
+import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule, NbToggleModule, NbListModule, NbButtonModule } from '@nebular/theme';
 import { AudioService } from '../service/audio.service';
 
 @NgModule({
@@ -27,7 +27,8 @@ import { AudioService } from '../service/audio.service';
     NbIconModule,
     NbSearchModule,
     NbToggleModule,
-    NbListModule
+    NbListModule,
+    NbButtonModule
   ],
   exports: [ToolBarComponent,
     NavBarComponent,

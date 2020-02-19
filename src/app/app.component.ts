@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Noobility';
+  image = 'https://scx2.b-cdn.net/gfx/news/hires/2019/nasamoonrock.jpg'; // binding this one
 }

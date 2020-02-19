@@ -1,4 +1,16 @@
-<div *ngFor="let img of imgSource" class="play-list-box">
-  <img [src]="img.source"> <!-- chua chinh animation -->
-<p>{{img.title}}</p>
+<div class="big-div">
+  <h1>Playlist's Name</h1>
+  <div class="sec-div">
+    <hr><button nbButton>Shuffle</button><hr>
+  </div>
+
+  <nb-card>
+    <nb-card-body>
+      <nb-list>
+        <nb-list-item *ngFor="let src of testSource">
+          <app-tracks [info]="src"></app-tracks>
+        </nb-list-item>
+      </nb-list>
+    </nb-card-body>
+  </nb-card>
 </div>

@@ -7,11 +7,12 @@
   <nb-sidebar containerFixed="true">
     <app-tool-bar></app-tool-bar>
   </nb-sidebar>
-  <nb-layout-column>
+  <nb-layout-column fixed>
+     <!--[style.background-image]="'url('+image+')'"-->
     <router-outlet></router-outlet>
   </nb-layout-column>
 
-  <nb-layout-footer fixed>
+  <nb-layout-footer>
     <app-music-player></app-music-player>
   </nb-layout-footer>
 
