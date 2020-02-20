@@ -1,19 +1,30 @@
-<nb-layout windowMode="true">
+
+<nb-layout windowMode="false">
 
   <nb-layout-header fixed>
     <app-nav-bar></app-nav-bar>
   </nb-layout-header>
-
-  <nb-sidebar containerFixed="true">
-    <app-tool-bar></app-tool-bar>
-  </nb-sidebar>
-  <nb-layout-column fixed>
-     <!--[style.background-image]="'url('+image+')'"-->
-    <router-outlet></router-outlet>
-  </nb-layout-column>
-
-  <nb-layout-footer>
+  <nb-layout-footer containerFixed="true" fixed>
     <app-music-player></app-music-player>
   </nb-layout-footer>
 
+
+
+<nb-layout-column fixed>
+    <!--[style.background-image]="'url('+image+')'"-->
+
+   <div class="testt"style="background-color: beige; width: 80%; height: 100%;">
+     <router-outlet></router-outlet>
+   </div>
+ </nb-layout-column>
+ <nb-sidebar containerFixed='true' fixed >
+  <app-tool-bar></app-tool-bar>
+</nb-sidebar>
+
+
+
 </nb-layout>
+
+
+
+

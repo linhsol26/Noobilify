@@ -13,3 +13,12 @@ body { margin: 0; font-family: 'Dancing Script', cursive; height: 100%; overflow
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Dancing Script', cursive; height: 100%; overflow: hidden
 }
+.footer {
+  position: fixed;
+  left: 20;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
