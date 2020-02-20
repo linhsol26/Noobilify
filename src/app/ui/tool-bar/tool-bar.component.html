@@ -2,11 +2,8 @@
 </div>
 <ng-template #authenticated>
   <div *ngIf="authService.user$ | async as user">
-    <nb-user style="justify-content: center;" size="large"
-      name={{user.displayName}}
-      title={{user.email}}
-      picture={{user.photoURL}}
-      >
+    <nb-user style="justify-content: center;" size="large" name={{user.displayName}} title={{user.email}}
+      picture={{user.photoURL}}>
     </nb-user>
     <button nbButton status="danger" (click)="authService.logOut()">Log out</button>
   </div>
@@ -20,6 +17,11 @@
 
 <br>
 <nb-menu [items]="items" autoCollapse="true">
+  
 </nb-menu>
 <br>
-<nb-toggle status="primary" (checkedChange)="changeTheme($event)"></nb-toggle>
+<div class="button_group">
+  <button (click)="createNewPlayList()" nbButton status="primary">New Playlist</button>
+  </div>
+<nb-toggle  class="toggle" status="primary" (checkedChange)="changeTheme($event)"></nb-toggle>
+
