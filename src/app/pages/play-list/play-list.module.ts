@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PlayListRoutingModule } from './play-list-routing.module';
 import { PlayListComponent } from './play-list.component';
-import { NbListModule, NbCardModule } from '@nebular/theme';
+import { NbListModule, NbCardModule, NbButtonModule, NbUserModule } from '@nebular/theme';
 import { UIModule } from 'src/app/ui/ui.module';
 
 
@@ -12,9 +12,11 @@ import { UIModule } from 'src/app/ui/ui.module';
   imports: [
     CommonModule,
     PlayListRoutingModule,
-    NbListModule,
+    NbButtonModule,
+    NbUserModule,
+    UIModule,
     NbCardModule,
-    UIModule
+    NbListModule
   ]
 })
 export class PlayListModule { }

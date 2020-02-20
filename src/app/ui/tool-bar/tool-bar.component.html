@@ -2,16 +2,8 @@
 </div>
 <ng-template #authenticated>
   <div *ngIf="authService.user$ | async as user">
-<<<<<<< HEAD
-    <nb-user style="justify-content: center;" size="large"
-      name={{user.displayName}}
-      title={{user.gmail}}
-      picture={{user.photoURL}}
-      onlyPicture>
-=======
     <nb-user style="justify-content: center;" size="large" name={{user.displayName}} title={{user.email}}
       picture={{user.photoURL}}>
->>>>>>> 11f48cecd83f44210d6126c051b2d1899fc9b244
     </nb-user>
     <button nbButton status="info" (click)="authService.logOut()">Log out</button>
   </div>
@@ -25,7 +17,7 @@
 
 <br>
 <nb-menu [items]="items" autoCollapse="true">
-  
+
 </nb-menu>
 <br>
 <div class="button_group">

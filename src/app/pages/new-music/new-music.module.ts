@@ -10,7 +10,7 @@ import { UIModule } from 'src/app/ui/ui.module';
 
 
 @NgModule({
-  declarations: [NewMusicComponent, PlayListComponent],
+  declarations: [NewMusicComponent],
   imports: [
     CommonModule,
     NewMusicRoutingModule,

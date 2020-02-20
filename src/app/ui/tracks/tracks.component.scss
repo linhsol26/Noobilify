@@ -1,4 +1,15 @@
 div {
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+nb-user {
+  margin-right: 85%;
+}
+
+nb-icon {
+  margin-top: 0.5%;
 }
