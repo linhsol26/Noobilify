@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./play-list-top-hit.component.scss']
 })
 export class PlayListTopHitComponent implements OnInit {
+
+  constructor() { }
   imgSource = [
     {
       source: '../../../assets/img-test-1.jpg',
@@ -37,13 +39,7 @@ export class PlayListTopHitComponent implements OnInit {
     },
   ];
 
-  constructor() {
-
-  }
-
-
   ngOnInit() {
   }
 
 }
-

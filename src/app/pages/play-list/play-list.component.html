@@ -5,12 +5,10 @@
   </div>
 
   <nb-card>
-    <nb-card-body>
-      <nb-list nbInfiniteList listenWindowScroll [threshold]="500">
-        <nb-list-item *ngFor="let src of testSource">
-          <app-tracks [info]="src"></app-tracks>
-        </nb-list-item>
-      </nb-list>
-    </nb-card-body>
+    <nb-list nbInfiniteList listenWindowScroll [threshold]="500">
+      <nb-list-item *ngFor="let src of testSource">
+        <app-tracks [info]="src"></app-tracks>
+      </nb-list-item>
+    </nb-list>
   </nb-card>
 </div>

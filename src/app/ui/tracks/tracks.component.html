@@ -1,6 +1,12 @@
-<div *ngIf="info">
-  <nb-icon icon="heart-outline" style="margin-top: 0.5%;"></nb-icon>
-  <nb-user size="small" [name]="info.name" [title]="info.title" [picture]="info.picture" style="margin-right:80%">
+<div>
+  <nb-icon icon="heart-outline"></nb-icon>
+  <nb-user
+  size="small"
+  name="src.name"
+  title="src.title"
+  picture="src.picture">
   </nb-user>
-  <nb-icon icon="arrow-right-outline" style="margin-top: 0.5%;"></nb-icon>
+  <nb-icon icon="arrow-right-outline" style="float: right"></nb-icon>
 </div>
+
+

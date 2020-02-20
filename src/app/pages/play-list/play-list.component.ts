@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PlayListComponent implements OnInit {
 
   constructor() { }
+<<<<<<< HEAD
   testSource = [
     {
       name: 'Song name',
@@ -70,6 +71,9 @@ export class PlayListComponent implements OnInit {
       picture: 'https://images.unsplash.com/photo-1523895665936-7bfe172b757d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80'
     },
   ];
+=======
+
+>>>>>>> parent of daf70ec... update and still cannot make footer (music player) fixed
   ngOnInit() {
   }
 }

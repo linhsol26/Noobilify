@@ -7,12 +7,10 @@ import { NbCardModule } from '@nebular/theme';
 import { PlayListComponent } from '../play-list/play-list.component';
 import { SongTopHitComponent } from 'src/app/ui/song-top-hit/song-top-hit.component';
 import { UIModule } from 'src/app/ui/ui.module';
-import { PlayListBoxComponent } from 'src/app/ui/play-list-box/play-list-box.component';
-import { PlayListTopHitComponent } from 'src/app/ui/play-list-top-hit/play-list-top-hit.component';
 
 
 @NgModule({
-  declarations: [NewMusicComponent],
+  declarations: [NewMusicComponent, PlayListComponent],
   imports: [
     CommonModule,
     NewMusicRoutingModule,
