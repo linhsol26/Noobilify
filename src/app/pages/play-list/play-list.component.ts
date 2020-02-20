@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
+import { PlayListService } from 'src/app/service/play-list.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-play-list',
   templateUrl: './play-list.component.html',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private playlistService: PlayListService, private location: Location) { }
+  playlist;
   testSource = [
     {
       name: 'Song name',
@@ -71,5 +74,14 @@ export class PlayListComponent implements OnInit {
     },
   ];
   ngOnInit() {
+    this.getPlayList();
+  }
+
+  getPlayList() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.playlistService.getPlayList(id).subscribe(pl => {
+      console.log(pl);
+      this.playlist = pl;
+    });
   }
 }
