@@ -1,0 +1,9 @@
+.btn_group {
+    display: flex;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.btn_group > button {
+    margin: auto 0;
+}

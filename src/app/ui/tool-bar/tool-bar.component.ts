@@ -1,16 +1,20 @@
-import { Component} from '@angular/core';
-import { NbThemeService } from '@nebular/theme';
+import { Component } from '@angular/core';
+import { NbThemeService, NbDialogService } from '@nebular/theme';
 import { AuthService } from 'src/app/service/auth.service';
+import { CreateNewPlayListComponent } from '../dialog/create-new-play-list/create-new-play-list.component';
+import { PlayListBoxComponent } from '../play-list-box/play-list-box.component';
+import { PlayListService } from 'src/app/service/play-list.service';
 
 @Component({
   selector: 'app-tool-bar',
   templateUrl: './tool-bar.component.html',
   styleUrls: ['./tool-bar.component.scss']
 })
-export class ToolBarComponent  {
+export class ToolBarComponent {
 
-  constructor(public changeThemes: NbThemeService, public authService: AuthService) {
+  constructor(public changeThemes: NbThemeService, public authService: AuthService, private dialogService: NbDialogService, private playListService: PlayListService) {
   }
+  PlayList = this.playListService.fetch();
   items = [
     {
       icon: 'person-outline',
@@ -34,20 +38,7 @@ export class ToolBarComponent  {
     {
       icon: 'headphones-outline',
       title: 'Playlist',
-      children: [
-        {
-          title: 'pls1',
-          link: [], // goes into angular `routerLink`
-        },
-        {
-          title: 'pls2',
-          url: '#', // goes directly into `href` attribute
-        },
-        {
-          title: 'pls3',
-          link: [],
-        },
-      ],
+      children: this.PlayList,
     },
     {
       icon: 'heart-outline',
@@ -75,5 +66,10 @@ export class ToolBarComponent  {
     } else {
       this.changeThemes.changeTheme('cosmic');
     }
+  }
+
+  createNewPlayList() {
+    this.dialogService.open(CreateNewPlayListComponent, {
+    });
   }
 }
