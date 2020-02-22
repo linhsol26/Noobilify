@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PlayListService } from 'src/app/service/play-list.service';
 import { Location } from '@angular/common';
+import { DataService } from 'src/app/service/data.service';
 @Component({
   selector: 'app-play-list',
   templateUrl: './play-list.component.html',
@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class PlayListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private playlistService: PlayListService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private dataService: DataService, private location: Location) { }
   playlist;
   testSource = [
     {
@@ -79,7 +79,7 @@ export class PlayListComponent implements OnInit {
 
   getPlayList() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.playlistService.getPlayList(id).subscribe(pl => {
+    this.dataService.getPlayList(id).subscribe(pl => {
       console.log(pl);
       this.playlist = pl;
     });

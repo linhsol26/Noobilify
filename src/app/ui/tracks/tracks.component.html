@@ -1,12 +1,10 @@
-<div>
-  <nb-icon icon="heart-outline"></nb-icon>
-  <nb-user
-  size="small"
-  [name]="info.name"
-  [title]="info.title"
-  [picture]="info.picture">
-  </nb-user>
-  <nb-icon icon="arrow-right-outline" style="float: right"></nb-icon>
+<div class="container">
+  <div>
+    <nb-user size="small" [name]="info.name" [title]="info.title" [picture]="info.picture">
+    </nb-user>
+  </div>
+  <div class="btn_group">
+    <nb-icon icon="arrow-right-outline" style="float: right"></nb-icon>
+    <nb-icon icon="heart-outline"></nb-icon>
+  </div>
 </div>
-
-
