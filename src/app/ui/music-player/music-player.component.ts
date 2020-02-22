@@ -18,9 +18,9 @@ export class MusicPlayerComponent {
   valueProcess = 0;
   items: Array<any> = [
     {
-      Name: 'Hay trao cho anh',
+      Name: 'Mot Nha',
       Url: 'https://c1-ex-swe.nixcdn.com/Sony_Audio55/MotNha-DaLAB-5798631.mp3?st=qZevoE5ZFM91OF08KuXA7g&e=1582083928&t=1581997528104',
-      Singer: 'Son Tung MTP',
+      Singer: 'Da Lab',
     },
     {
       Name: 'Hay trao cho anh',
@@ -29,9 +29,9 @@ export class MusicPlayerComponent {
       Singer: 'Son Tung MTP',
     },
     {
-      Name: 'Hay trao cho anh',
+      Name: 'Thanh Xuan',
       Url: 'https://c1-ex-swe.nixcdn.com/Sony_Audio52/ThanhXuan-DaLAB-5773854.mp3?st=AzUA5WQIFQxHzVCWSC-Ymw&e=1582083943&t=1581997547755',
-      Singer: 'Son Tung MTP',
+      Singer: 'Da Lab',
     }
   ];
   current = 0;
@@ -69,6 +69,7 @@ export class MusicPlayerComponent {
       this.current++;
       this.state = undefined;
       this.currentItem = this.items[this.current];
+      this.isPlaying = true;
       this.playStream();
     }
   }
@@ -77,6 +78,7 @@ export class MusicPlayerComponent {
       this.current--;
       this.state = undefined;
       this.currentItem = this.items[this.current];
+      this.isPlaying = true;
       this.playStream();
     }
   }
