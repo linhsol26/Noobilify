@@ -20,8 +20,12 @@
 
 </nb-menu>
 <br>
-<div class="button_group">
-  <button (click)="createNewPlayList()" nbButton status="primary">New Playlist</button>
-  </div>
-<nb-toggle  class="toggle" status="primary" (checkedChange)="changeTheme($event)"></nb-toggle>
+<div class="button-group">
+  <nb-toggle  class="toggle" status="basic" (checkedChange)="changeTheme($event)"></nb-toggle>
+  <button (click)="createNewPlayList()" nbButton status="primary" style="margin-bottom: 10%">
+  <nb-icon icon="plus-outline"></nb-icon>
+  </button>
+</div>
+
+
 
