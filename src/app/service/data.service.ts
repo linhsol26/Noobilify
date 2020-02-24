@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
+import { AuthService } from './auth.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  constructor() { }
-
   PlayListArray = [{
     id: 'abc',
     title: "TEST1",
@@ -22,8 +21,12 @@ export class DataService {
     id: 'cbz',
     title: "TEST3",
     link: `/playlist/cbz`
+  }];
+
+  constructor(private auth: AuthService, private afStore: AngularFirestore) {
+    
   }
-  ];
+
   fetch() {
     return this.PlayListArray;
   }
@@ -36,5 +39,9 @@ export class DataService {
     return of(this.PlayListArray.filter(obj => {
       obj.id === id;
     }))
+  }
+
+  updatePlayList() {
+    return new Observable()
   }
 }

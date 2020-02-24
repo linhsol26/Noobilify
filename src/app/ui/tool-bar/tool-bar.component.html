@@ -1,9 +1,9 @@
-<div *ngIf="authService.user$ | async; then authenticated else guest">
+<div *ngIf="authService.user != null; then authenticated else guest">
 </div>
 <ng-template #authenticated>
-  <div *ngIf="authService.user$ | async as user">
-    <nb-user style="justify-content: center;" size="large" name={{user.displayName}} title={{user.email}}
-      picture={{user.photoURL}}>
+  <div *ngIf="authService.user">
+    <nb-user style="justify-content: center;" size="large" name={{authService.user.displayName}} title={{authService.user.email}}
+      picture={{authService.user.photoURL}}>
     </nb-user>
     <button nbButton status="info" (click)="authService.logOut()">Log out</button>
   </div>
