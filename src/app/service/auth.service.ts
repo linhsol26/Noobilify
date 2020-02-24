@@ -20,7 +20,7 @@ export class AuthService {
         this.user = user;
         this.afStore.collection('users').doc(this.user.uid).get().subscribe(data => {
           this.userData = data.data();
-          console.log(data.data());
+          console.log(data);
           console.log(this.userData);
         })
       }
@@ -45,17 +45,17 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  public updateUserData({ uid, email, displayName, photoURL, playlistID }: User) {
-    const userRef: AngularFirestoreDocument<User> = this.afStore.doc(`users/${uid}`);
-    const data = {
-      uid,
-      email,
-      displayName,
-      photoURL,
-      playlistID,
-    };
-    return userRef.set(data, { merge: true });
-  }
+  // public updateUserData({ uid, email, displayName, photoURL, playlistID }: User) {
+  //   const userRef: AngularFirestoreDocument<User> = this.afStore.doc(`users/${uid}`);
+  //   const data = {
+  //     uid,
+  //     email,
+  //     displayName,
+  //     photoURL,
+  //     playlistID,
+  //   };
+  //   return userRef.set(data, { merge: true });
+  // }
 
   // async loginWithGG() {
   //   const provider = new auth.GoogleAuthProvider();
