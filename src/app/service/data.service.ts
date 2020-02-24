@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+export class DataService {
 
-export class PlayListService {
-  PlayListArray= [{
+  constructor() { }
+
+  PlayListArray = [{
     id: 'abc',
     title: "TEST1",
     link: `/playlist/abc`
@@ -21,15 +23,12 @@ export class PlayListService {
     title: "TEST3",
     link: `/playlist/cbz`
   }
-];
-
-  constructor() { }
-
+  ];
   fetch() {
     return this.PlayListArray;
   }
 
-  addPlayListToUser(name){
+  addPlayListToUser(name) {
     this.PlayListArray.push(name);
   }
 

@@ -3,7 +3,7 @@ import { NbThemeService, NbDialogService } from '@nebular/theme';
 import { AuthService } from 'src/app/service/auth.service';
 import { CreateNewPlayListComponent } from '../dialog/create-new-play-list/create-new-play-list.component';
 import { PlayListBoxComponent } from '../play-list-box/play-list-box.component';
-import { PlayListService } from 'src/app/service/play-list.service';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-tool-bar',
@@ -12,9 +12,9 @@ import { PlayListService } from 'src/app/service/play-list.service';
 })
 export class ToolBarComponent {
 
-  constructor(public changeThemes: NbThemeService, public authService: AuthService, private dialogService: NbDialogService, private playListService: PlayListService) {
+  constructor(public changeThemes: NbThemeService, public authService: AuthService, private dialogService: NbDialogService, private dataService: DataService) {
   }
-  PlayList = this.playListService.fetch();
+  PlayList = this.dataService.fetch();
   items = [
     {
       icon: 'person-outline',

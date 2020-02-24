@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NbDialogService, NbDialogRef } from '@nebular/theme';
-import { PlayListService } from 'src/app/service/play-list.service';
+import { DataService } from 'src/app/service/data.service';
 
 @Component({
   templateUrl: './create-new-play-list.component.html',
@@ -9,13 +9,13 @@ import { PlayListService } from 'src/app/service/play-list.service';
 export class CreateNewPlayListComponent implements OnInit {
 
   PlayListName: string = "";
-  constructor(protected dialogRef: NbDialogRef<String>, public PlayList: PlayListService) { }
+  constructor(protected dialogRef: NbDialogRef<String>, public dataService: DataService) { }
 
   ngOnInit() {
   }
   
   sumbit(){
-    this.PlayList.addPlayListToUser({
+    this.dataService.addPlayListToUser({
       title: this.PlayListName,
     });
     this.dialogRef.close();

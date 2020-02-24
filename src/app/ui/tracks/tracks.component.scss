@@ -1,15 +1,15 @@
-div {
+.container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.btn_group {
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: stretch;
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  justify-items: end;
+  align-items: center;
 }
 
-nb-user {
-  margin-right: 85%;
-}
-
-nb-icon {
-  margin-top: 0.5%;
+.btn_group > nb-icon{
+  margin-left: 20px;
 }

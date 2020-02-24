@@ -15,7 +15,7 @@ export class MusicPlayerComponent {
 
   }
   isPlaying = false;
-  valueProcess = 0;
+  value = 10;
   items: Array<any> = [
     {
       Name: 'Mot Nha',
@@ -49,7 +49,7 @@ export class MusicPlayerComponent {
 
     this.audioService.getState().subscribe(state => {
       this.state = state;
-      this.valueProcess = (this.state.currentTime / this.state.duration * 100);
+      this.value = (this.state.currentTime / this.state.duration * 100);
     });
   }
   playMusic() {

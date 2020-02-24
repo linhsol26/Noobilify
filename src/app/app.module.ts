@@ -11,6 +11,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { DialogModule } from './ui/dialog/dialog.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { DialogModule } from './ui/dialog/dialog.module';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),
-    DialogModule
+    DialogModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [NbSidebarService],
   bootstrap: [AppComponent]
