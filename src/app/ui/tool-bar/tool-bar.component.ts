@@ -12,28 +12,29 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class ToolBarComponent {
 
+  // tslint:disable-next-line:max-line-length
   constructor(public changeThemes: NbThemeService, public authService: AuthService, private dialogService: NbDialogService, private dataService: DataService) {
   }
   PlayList = this.dataService.fetch();
   items = [
     {
-      icon: 'person-outline',
-      title: 'Profile',
-      expanded: true,
-      children: [
-        {
-          title: 'Change Password',
-          link: [], // goes into angular `routerLink`
-        },
-        {
-          title: 'Privacy Policy',
-          url: '#', // goes directly into `href` attribute
-        },
-        {
-          title: 'Logout',
-          link: [],
-        },
-      ],
+      // icon: 'person-outline',
+      // title: 'Profile',
+      // expanded: true,
+      // children: [
+      //   {
+      //     title: 'Change Password',
+      //     link: [], // goes into angular `routerLink`
+      //   },
+      //   {
+      //     title: 'Privacy Policy',
+      //     url: '#', // goes directly into `href` attribute
+      //   },
+      //   {
+      //     title: 'Logout',
+      //     link: [],
+      //   },
+      // ],
     },
     {
       icon: 'headphones-outline',

@@ -8,24 +8,24 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class CreateNewPlayListComponent implements OnInit {
 
-  PlayListName: string = "";
+  PlayListName = '';
   constructor(protected dialogRef: NbDialogRef<String>, public dataService: DataService) { }
 
   ngOnInit() {
   }
-  
-  sumbit(){
+
+  sumbit() {
     this.dataService.addPlayListToUser({
       title: this.PlayListName,
     });
     this.dialogRef.close();
   }
-  cancel(){
+  cancel() {
     this.dialogRef.close();
   }
 
   test(evt) {
-    if(evt.key === 'Enter'){
+    if (evt.key === 'Enter') {
       this.sumbit();
     }
   }

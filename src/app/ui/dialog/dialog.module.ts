@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { DialogRoutingModule } from './dialog-routing.module';
 import { CreateNewPlayListComponent } from './create-new-play-list/create-new-play-list.component';
 import { NbInputModule, NbButtonModule, NbDialogModule } from '@nebular/theme';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { ChangePasswordComponent } from './change-password/change-password.component'
 
 @NgModule({
-  declarations: [CreateNewPlayListComponent],
+  declarations: [CreateNewPlayListComponent, ChangePasswordComponent],
   imports: [
     CommonModule,
     DialogRoutingModule,
@@ -17,6 +18,6 @@ import { FormsModule } from '@angular/forms'
     NbDialogModule.forChild(),
     NbDialogModule.forRoot()
   ],
-  entryComponents: [CreateNewPlayListComponent]
+  entryComponents: [CreateNewPlayListComponent, ChangePasswordComponent]
 })
 export class DialogModule { }
