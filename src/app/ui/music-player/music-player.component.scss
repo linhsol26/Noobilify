@@ -10,3 +10,16 @@ nb-card-body {
   text-align: justify;
 }
 
+nb-user {
+  margin-right: 10%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 25%;
+}
+
+mat-slider {
+  width: 80%;
+}

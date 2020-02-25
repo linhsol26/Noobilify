@@ -9,6 +9,7 @@ import { DataService } from 'src/app/service/data.service';
 export class CreateNewPlayListComponent implements OnInit {
 
   PlayListName = '';
+  // tslint:disable-next-line:ban-types
   constructor(protected dialogRef: NbDialogRef<String>, public dataService: DataService) { }
 
   ngOnInit() {

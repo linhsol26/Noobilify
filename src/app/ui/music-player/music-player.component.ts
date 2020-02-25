@@ -38,8 +38,9 @@ export class MusicPlayerComponent {
   currentItem = this.items[this.current];
   state: StreamState;
   currentFile: any = {};
-  ramdonm: boolean = false;
-  loop: boolean = false;
+  random = false;
+  loop = false;
+  // tslint:disable-next-line:use-lifecycle-interface
   ngOnInit() {
   }
 
@@ -49,7 +50,7 @@ export class MusicPlayerComponent {
 
   playStream() {
     this.audioService.playStream(this.currentItem.Url).subscribe(events => {
-      if (events.type === "ended") {
+      if (events.type === 'ended') {
         this.test();
       }
     });
@@ -62,10 +63,10 @@ export class MusicPlayerComponent {
 
 
   test() {
-    if (this.loop == true) {
+    if (this.loop === true) {
       this.playStream();
-    }else if(this.ramdonm == true) {
-      console.log("OK");
+    } else if (this.random === true) {
+      console.log('OK');
       this.current = Math.floor(Math.random() * this.items.length);
       this.currentItem = this.items[this.current];
       this.playStream();
