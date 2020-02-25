@@ -15,7 +15,7 @@ export class MusicPlayerComponent {
 
   }
   isPlaying = false;
-  value = 10;
+  value = 0;
   items: Array<any> = [
     {
       Name: 'Mot Nha',
@@ -38,19 +38,38 @@ export class MusicPlayerComponent {
   currentItem = this.items[this.current];
   state: StreamState;
   currentFile: any = {};
-  // tslint:disable-next-line:use-lifecycle-interface
+  ramdonm: boolean = false;
+  loop: boolean = false;
   ngOnInit() {
+  }
+
+  seekto() {
+    this.audioService.seekTo(this.state.duration / 100 * this.value);
   }
 
   playStream() {
     this.audioService.playStream(this.currentItem.Url).subscribe(events => {
-      console.log(events);
+      if (events.type === "ended") {
+        this.test();
+      }
     });
 
     this.audioService.getState().subscribe(state => {
       this.state = state;
       this.value = (this.state.currentTime / this.state.duration * 100);
     });
+  }
+
+
+  test() {
+    if (this.loop == true) {
+      this.playStream();
+    }else if(this.ramdonm == true) {
+      console.log("OK");
+      this.current = Math.floor(Math.random() * this.items.length);
+      this.currentItem = this.items[this.current];
+      this.playStream();
+    }
   }
   playMusic() {
     if (this.state === undefined) {

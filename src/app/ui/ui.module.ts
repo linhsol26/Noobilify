@@ -12,7 +12,8 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import { NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbUserModule, NbIconModule, NbSearchModule, NbToggleModule, NbListModule, NbButtonModule, NbInputModule, NbDialogModule, NbProgressBarModule } from '@nebular/theme';
 import { AudioService } from '../service/audio.service';
 import { FormsModule } from '@angular/forms';
-import { NzSliderModule} from 'ng-zorro-antd/slider'
+
+import { MatSliderModule } from '@angular/material/slider'
 @NgModule({
   // tslint:disable-next-line:max-line-length
   declarations: [ToolBarComponent, NavBarComponent,
@@ -35,7 +36,8 @@ import { NzSliderModule} from 'ng-zorro-antd/slider'
     NbLayoutModule,
     NbDialogModule.forChild(),
     FormsModule,
-    NbProgressBarModule 
+    NbProgressBarModule ,
+    MatSliderModule
   ],
   exports: [ToolBarComponent,
     NavBarComponent,
