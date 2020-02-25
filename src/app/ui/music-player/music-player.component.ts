@@ -34,6 +34,14 @@ export class MusicPlayerComponent {
       Singer: 'Da Lab',
     }
   ];
+
+  items1 = [
+    { title: 'Favorite music' },
+    { title: 'Playlist-TEST1' },
+    { title: 'Playlist-TEST2' },
+    { title: 'Playlist-TEST3' }
+  ];
+
   current = 0;
   currentItem = this.items[this.current];
   state: StreamState;

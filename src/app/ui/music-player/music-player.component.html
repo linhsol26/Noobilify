@@ -14,7 +14,8 @@
       <nb-icon icon="arrow-ios-forward-outline" (click)="nextMusic()" style="margin-left: 2%"></nb-icon>
       <nb-icon *ngIf="!random" icon="shuffle-outline" style="margin-left: 5%" (click)="random = !random"></nb-icon>
       <nb-icon *ngIf="random" icon="shuffle-outline" style="color: blue; margin-left: 5%" (click)="random = !random"></nb-icon>
-      <nb-icon icon="music-outline" style="margin-left: 60%"></nb-icon>
+      <nb-icon icon="music-outline" style="margin-left: 50%"></nb-icon>
+      <button [nbContextMenu]="items1"></button>
     </div>
 
     <mat-slider [(ngModel)]="value" (valueChange)="seekto()"></mat-slider>
