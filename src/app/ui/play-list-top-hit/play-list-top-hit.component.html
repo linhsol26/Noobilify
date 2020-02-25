@@ -1,5 +1,6 @@
-<div *ngFor="let img of imgSource" class="play-list-box">
-  <img [src]="img.source">
-  <!-- <p>{{img.title}}</p> chua chinh animation -->
+<div class="card-row">
+  <div *ngFor="let img of imgSource" class="play-list-box card-col">
+    <img [src]="img.source" class="header-image box-shadow">
+    <!-- <p>{{img.title}}</p> chua chinh animation -->
+  </div>
 </div>
-

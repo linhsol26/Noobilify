@@ -1,12 +1,11 @@
-  <h1>Playlist's Name</h1>
-  <div class="sec-div">
-    <hr><button nbButton>Shuffle</button><hr>
-  </div>
+<nb-card>
+  <nb-card-body>
+    <h1>Playlist's Name</h1>
+    <div class="sec-div">
+      <hr><button nbButton>Shuffle</button><hr>
+    </div>
 
-  <nb-card style="margin-top: 5%;" [size]="'small'">
-    <nb-list listenWindowScroll="true">
-      <nb-list-item *ngFor="let src of testSource">
-        <app-tracks [info]="src"></app-tracks>
-      </nb-list-item>
-    </nb-list>
-  </nb-card>
+    <app-tracks-of-playlist></app-tracks-of-playlist>
+  </nb-card-body>
+</nb-card>
+

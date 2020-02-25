@@ -44,6 +44,7 @@ export class ToolBarComponent {
     {
       icon: 'heart-outline',
       title: 'Favorite Songs',
+      link: ['/fav-list']
       // children: [
       //   {
       //     title: 'First Order',
