@@ -1,0 +1,37 @@
+@mixin flexBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-zone {
+  @include flexBox();
+
+  .dropzone {
+    @include flexBox();
+    flex-direction: column;
+    width: 30vw;
+    font-weight: 200;
+    height: 30vh;
+    border: 2px dashed black;
+    border-radius: 5px;
+    margin: 10px 0;
+
+    &.hovering {
+        border: 2px solid black;
+        color: #dadada !important;
+    }
+
+    .file-label {
+      font-size: 1.2em;
+    }
+  }
+}
+
+progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+}
+
+h3 {
+  text-align: center;
+}

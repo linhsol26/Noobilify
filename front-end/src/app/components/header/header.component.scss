@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  app-search {
+    flex-grow: 2;
+  }
+}

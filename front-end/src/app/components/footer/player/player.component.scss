@@ -1,0 +1,61 @@
+nb-icon {
+  cursor: pointer;
+  outline: none;
+  border-style: hidden;
+  width: 25px !important;
+  height: 25px !important;
+}
+
+nb-card-body {
+  padding: inherit;
+  text-align: justify;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.mid {
+  padding: 11px !important;
+  margin: 10px;
+}
+
+.player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.time-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 40%;
+
+  &__child {
+    width: 70% !important;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+.volume-slider {
+  display: flex;
+  align-items: center;
+
+  &__child {
+    margin-right: 20px;
+  }
+}
+
+.button {
+  outline: none !important;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.current-song {
+  width: 15%;
+}

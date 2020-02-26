@@ -1,0 +1,18 @@
+<div class="input-information-song">
+  <input type="text" nbInput shape="rectangle" placeholder="Name song" [formControl]="cloudService.name" required>
+  <input type="text" nbInput shape="rectangle" placeholder="Singer" [formControl]="cloudService.singer" required>
+  <input type="text" nbInput shape="rectangle" placeholder="Artist" [formControl]="cloudService.artist" required>
+</div>
+
+<app-update-image (imgFiles)="receivedImgFile($event)"></app-update-image>
+<app-upload-music (musicFiles)="receivedMusicFile($event)"></app-upload-music>
+
+<h3>Uploads</h3>
+<div *ngFor="let musicFile of musicFiles">
+  <div *ngFor="let imgFile of imgFiles">
+    <app-upload-task
+      [musicFile]="musicFile"
+      [imgFile]="imgFile"
+      ></app-upload-task>
+  </div>
+</div>

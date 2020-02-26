@@ -1,0 +1,19 @@
+<nb-card size="tiny" class="liked-song-page">
+  <nb-card-body>
+
+    <h1>Your Liked Song</h1>
+
+    <nb-card size="tiny" class="playlist-detail box-shadow" (click)="playLikedSongPlaylist()">
+      <nb-card-body class="liked-song">
+        <nb-icon icon="heart-outline"></nb-icon>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-list listenWindowScroll="true" class="list-items">
+      <nb-list-item class="tracks" *ngFor="let file of likedSongFile; trackBy: trackById">
+        <app-track [file]="file"></app-track>
+      </nb-list-item>
+    </nb-list>
+
+  </nb-card-body>
+</nb-card>

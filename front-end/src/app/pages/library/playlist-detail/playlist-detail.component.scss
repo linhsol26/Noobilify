@@ -1,0 +1,27 @@
+.playlist-detail {
+  width: 15%;
+  cursor: pointer;
+  outline: none !important;
+
+  .liked-song {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #3366ff, #20bdff);
+  }
+
+  nb-icon {
+    width: 100px;
+    height: 100px;
+    color: white;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 10px 30px rgba(59, 43, 91, 0.7);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+  &:hover {
+    box-shadow: 0 20px 20px rgba(59, 43, 91, 0.7);
+  }
+}
