@@ -1,0 +1,15 @@
+<nb-card>
+  <nb-card-body>
+    <nb-user (click)="openFile(file, cloudService.index)" shape="rectangle" size="medium"
+      name={{file.name}}
+      title={{file.artist}}
+      picture={{file.imgURL}}>
+    </nb-user>
+    <div *ngIf="authService.user$ | async as user">
+      <button [disabled]="isInLikedSong(file)" (click)="addToLikedSong(user, file)">
+        <nb-icon icon="heart-outline" ></nb-icon>
+      </button>
+      <nb-icon icon="more-horizontal-outline"></nb-icon>
+    </div>
+  </nb-card-body>
+</nb-card>

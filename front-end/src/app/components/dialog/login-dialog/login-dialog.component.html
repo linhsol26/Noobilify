@@ -1,0 +1,27 @@
+<div *ngIf="authService.user$ | async; then authenticated else guest">
+</div>
+<ng-template #guest>
+  <nb-card status="basic">
+    <nb-card-header>
+      <nb-icon icon="google-outline"></nb-icon>
+      Login with Google
+    </nb-card-header>
+    <nb-card-body>
+      <button nbButton fullWidth status="primary" (click)="loginWithGoogle()">Login</button>
+    </nb-card-body>
+    <nb-card-footer>By Shu</nb-card-footer>
+  </nb-card>
+</ng-template>
+
+<ng-template #authenticated>
+  <nb-card status="basic">
+    <nb-card-header>
+      <nb-icon icon="google-outline"></nb-icon>
+      Your are logged with Google
+    </nb-card-header>
+    <nb-card-body>
+      <button nbButton fullWidth status="primary" (click)="signOut()">Log out</button>
+    </nb-card-body>
+    <nb-card-footer>By Shu</nb-card-footer>
+  </nb-card>
+</ng-template>

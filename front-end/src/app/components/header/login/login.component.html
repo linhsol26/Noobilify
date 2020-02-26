@@ -1,0 +1,18 @@
+<div *ngIf="authService.user$ | async; then authenticated else guest">
+</div>
+
+<ng-template #guest>
+  <button nbTooltip="Login with Google" nbTooltipIcon="google-outline" nbTooltipPlacement="start" nbButton (click)="open()" status="primary" hero>
+    Login
+  </button>
+</ng-template>
+
+<ng-template #authenticated>
+  <div *ngIf="authService.user$ | async as user" (click)="open()">
+    <nb-user size="large"
+             name={{user.displayName}}
+             title={{user.email}}
+             picture={{user.photoURL}}>
+    </nb-user>
+  </div>
+</ng-template>

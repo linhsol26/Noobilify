@@ -1,0 +1,61 @@
+<div>
+  <nb-card-body class="player">
+
+    <div  *ngIf="cloudService.currentFile.file !== undefined" class="current-song">
+      <nb-user shape="rectangle" size="large"
+        name={{cloudService.currentFile.file.name}}
+        title={{cloudService.currentFile.file.artist}}
+        picture={{cloudService.currentFile.file.imgURL}}>
+      </nb-user>
+    </div>
+
+    <div>
+      <button nbButton [disabled]="isFirstPlaying()" (click)="previous()" status="primary" class="button">
+        <nb-icon icon="skip-back-outline" status="basic"></nb-icon>
+      </button>
+
+      <button nbTooltip="play" nbTooltipPlacement="top" nbButton (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing" class="mid" status="primary" shape="round">
+        <nb-icon icon="play-circle-outline" status="control"></nb-icon>
+      </button>
+
+      <button nbTooltip="pause" nbTooltipPlacement="top" nbButton (click)="pause()" *ngIf="state?.playing" class="mid" status="primary" shape="round">
+        <nb-icon icon="pause-circle-outline" status="control"></nb-icon>
+      </button>
+
+      <button nbButton [disabled]="isLastPlaying()" (click)="next()" status="primary" class="button">
+        <nb-icon icon="skip-forward-outline" status="basic"></nb-icon>
+      </button>
+    </div>
+
+    <div class="time-slider">
+      {{state?.readableCurrentTime}}
+      <mat-slider
+        class="time-slider__child"
+        color="primary"
+        [min]="0"
+        [max]="state?.duration"
+        [step]="1"
+        [value]="state?.currentTime"
+        (input)="onSliderChangeEnd($event)"
+        [disabled]="state?.error || cloudService.currentFile.index === undefined">
+      </mat-slider>
+      {{state?.readableDuration}}
+    </div>
+
+    <div class="volume-slider">
+      <nb-icon icon="volume-up-outline" status="basic" *ngIf="audioService.audioObj.volume !== 0"></nb-icon>
+      <nb-icon icon="volume-off-outline" status="basic" *ngIf="audioService.audioObj.volume === 0"></nb-icon>
+      <mat-slider
+        class="volume-slider__child"
+        color="primary"
+        [min]="0"
+        [max]="1"
+        [value]="1"
+        [step]="0.1"
+        (input)="onSliderChangeVolume($event)"
+        >
+      </mat-slider>
+    </div>
+
+  </nb-card-body>
+</div>
