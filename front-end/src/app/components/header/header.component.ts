@@ -12,9 +12,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
   }
+
   changeTheme(event) {
     if (event === true) {
-      this.changeThemes.changeTheme('cosmic');
+      this.changeThemes.changeTheme('dark');
     } else {
       this.changeThemes.changeTheme('default');
     }

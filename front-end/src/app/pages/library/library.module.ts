@@ -9,7 +9,8 @@ import {
   NbTabsetModule,
   NbRouteTabsetModule,
   NbIconModule,
-  NbListModule
+  NbListModule,
+  NbButtonModule
 } from '@nebular/theme';
 import { PlaylistDetailComponent } from './playlist-detail/playlist-detail.component';
 import { AlbumDetailComponent } from './album-detail/album-detail.component';
@@ -35,7 +36,8 @@ import { HomeModule } from '../home/home.module';
     NbRouteTabsetModule,
     NbIconModule,
     HomeModule,
-    NbListModule
+    NbListModule,
+    NbButtonModule
   ]
 })
 export class LibraryModule { }
