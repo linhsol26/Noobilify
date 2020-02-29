@@ -10,7 +10,7 @@
     </nb-card>
 
     <nb-list listenWindowScroll="true" class="list-items">
-      <nb-list-item class="tracks" *ngFor="let file of likedSongFile; trackBy: trackById">
+      <nb-list-item class="tracks" *ngFor="let file of likedSongFile">
         <app-track [file]="file"></app-track>
       </nb-list-item>
     </nb-list>

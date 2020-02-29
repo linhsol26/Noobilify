@@ -26,6 +26,7 @@ import { LoginDialogComponent } from './dialog/login-dialog/login-dialog.compone
 import { FooterComponent } from './footer/footer.component';
 import { PlayerComponent } from './footer/player/player.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { MatSliderModule } from '@angular/material/slider';
     NbProgressBarModule,
     NbInputModule,
     MatSliderModule,
-    NbTooltipModule
+    NbTooltipModule,
+    RouterModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [

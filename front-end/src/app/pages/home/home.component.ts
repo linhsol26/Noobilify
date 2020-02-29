@@ -50,10 +50,6 @@ export class HomeComponent implements OnInit {
     this.playStream(file.musicURL);
   }
 
-  trackById(index: number, file) {
-    return file.id;
-  }
-
   ngOnInit() {
   }
 
