@@ -2,6 +2,7 @@
   width: 15%;
   cursor: pointer;
   outline: none !important;
+  margin: 0 20px;
 
   .liked-song {
     display: flex;
@@ -28,4 +29,10 @@
   &:hover {
     box-shadow: 0 20px 20px rgba(59, 43, 91, 0.7);
   }
+}
+
+.contain {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 -20px;
 }

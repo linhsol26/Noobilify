@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public changeThemes: NbThemeService) { }
 
   ngOnInit() {
   }
-
+  changeTheme(event) {
+    if (event === true) {
+      this.changeThemes.changeTheme('cosmic');
+    } else {
+      this.changeThemes.changeTheme('default');
+    }
+  }
 }

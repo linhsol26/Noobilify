@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CloudService } from 'src/app/services/cloud.service';
-import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-sidebar',

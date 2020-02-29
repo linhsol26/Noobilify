@@ -15,7 +15,8 @@ import {
   NbInputModule,
   NbToastrModule,
   NbToastrService,
-  NbTooltipModule
+  NbTooltipModule,
+  NbToggleModule
 } from '@nebular/theme';
 import { SearchComponent } from './header/search/search.component';
 import { LogoComponent } from './header/logo/logo.component';
@@ -57,7 +58,8 @@ import { RouterModule } from '@angular/router';
     NbInputModule,
     MatSliderModule,
     NbTooltipModule,
-    RouterModule
+    RouterModule,
+    NbToggleModule
   ],
   entryComponents: [LoginDialogComponent],
   exports: [
