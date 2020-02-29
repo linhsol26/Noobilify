@@ -1,31 +1,39 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { CloudService } from 'src/app/services/cloud.service';
+import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarComponent implements OnInit {
 
-  items = [
+  user: any;
+
+  menuItems = [
     {
       title: 'Home',
       icon: 'home-outline',
       link: ['home'],
     },
     {
+      title: 'Search',
+      icon: 'search-outline',
+      link: ['search'],
+    },
+    {
       title: 'Library',
       icon: 'book-outline',
       link: ['library'],
+      hidden: true,
     },
     {
       title: 'Playlist',
       icon: 'headphones-outline',
+      hidden: true,
       children: [
-        {
-          title: 'New Playlist',
-          icon: 'plus-square-outline'
-        },
         {
           title: 'Liked Song',
           icon: 'heart-outline',
@@ -36,16 +44,31 @@ export class SidebarComponent implements OnInit, OnDestroy {
     {
       title: 'Upload music',
       icon: 'cloud-upload-outline',
-      link: ['upload']
+      link: ['upload'],
+      hidden: true,
     }
   ];
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) {
+    this.authService.user$.subscribe(userData => {
+      this.user = userData;
+
+      if (this.user !== null) {
+        this.menuItems.forEach(item => item.hidden = false);
+      } else {
+        this.menuItems.forEach(item => {
+          if (item.title === 'Home' || item.title === 'Search') {
+            item.hidden = false;
+          } else {
+            item.hidden = true;
+          }
+        });
+      }
+    });
+  }
 
   ngOnInit() {
   }
-
-  ngOnDestroy() {
-  }
-
 }

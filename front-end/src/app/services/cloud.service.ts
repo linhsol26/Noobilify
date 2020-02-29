@@ -25,7 +25,9 @@ export class CloudService {
   }
 
   getLikedSongData(user) {
-    return this.db.doc(`users/${user.uid}`).collection('likedsong').snapshotChanges();
+    if (user) {
+      return this.db.doc(`users/${user.uid}`).collection('likedsong').snapshotChanges();
+    }
   }
 
   updateLikedSongData(user, file) {
@@ -45,5 +47,10 @@ export class CloudService {
       imgPath
     };
     return dataRef.add(data);
+  }
+
+  deleteLikeSongData(user, id) {
+    const userRef = this.db.doc(`users/${user.uid}`).collection('likedsong').doc(id);
+    return userRef.delete();
   }
 }

@@ -13,7 +13,7 @@
     <p>{{files.length}} Postions</p>
 
     <nb-list listenWindowScroll="true" class="list-items">
-      <nb-list-item class="tracks" *ngFor="let file of files; trackBy: trackById">
+      <nb-list-item class="tracks" *ngFor="let file of files">
         <app-track [file]="file"></app-track>
       </nb-list-item>
     </nb-list>

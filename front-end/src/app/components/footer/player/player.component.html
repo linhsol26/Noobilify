@@ -14,11 +14,28 @@
         <nb-icon icon="skip-back-outline" status="basic"></nb-icon>
       </button>
 
-      <button nbTooltip="play" nbTooltipPlacement="top" nbButton (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing" class="mid" status="primary" shape="round">
+      <button
+        nbTooltip="play"
+        nbTooltipPlacement="top"
+        nbTooltipStatus="primary"
+        nbButton (click)="play()"
+        [disabled]="state?.error"
+        *ngIf="!state?.playing"
+        class="mid"
+        status="primary"
+        shape="round">
         <nb-icon icon="play-circle-outline" status="control"></nb-icon>
       </button>
 
-      <button nbTooltip="pause" nbTooltipPlacement="top" nbButton (click)="pause()" *ngIf="state?.playing" class="mid" status="primary" shape="round">
+      <button
+        nbTooltip="pause"
+        nbTooltipPlacement="top"
+        nbTooltipStatus="primary"
+        nbButton (click)="pause()"
+        *ngIf="state?.playing"
+        class="mid"
+        status="primary"
+        shape="round">
         <nb-icon icon="pause-circle-outline" status="control"></nb-icon>
       </button>
 

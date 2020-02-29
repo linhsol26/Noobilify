@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { MusicData } from 'src/app/models/music-data.model';
@@ -33,7 +34,12 @@ export class UploadTaskComponent implements OnInit {
   }
 
   startUpload() {
-    if (this.imgFile !== null && this.musicFile !== null) {
+    if (
+        this.imgFile !== null &&
+        this.musicFile !== null &&
+        this.cloudService.name.value !== '' &&
+        this.cloudService.artist.value !== '' &&
+        this.cloudService.singer.value !== '') {
       // The storage path
       const musicPath = `music/${Date.now()}_${this.musicFile.name}`;
       const imgPath = `images/${Date.now()}_${this.imgFile.name}`;
@@ -69,7 +75,6 @@ export class UploadTaskComponent implements OnInit {
             this.cloudService.name.reset();
             this.cloudService.singer.reset();
             this.cloudService.artist.reset();
-            location.reload();
           });
         }),
       );
@@ -78,6 +83,10 @@ export class UploadTaskComponent implements OnInit {
 
   isActive(snapshot) {
     return snapshot.state === 'running' && snapshot.bytesTransferred < snapshot.totalBytes;
+  }
+
+  getInt(value) {
+    return Number.parseInt(value, 10);
   }
 
 }

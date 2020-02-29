@@ -16,6 +16,18 @@ nb-card-body {
       color: #3366ff;
     }
   }
+
+  .add-to-liked-song:hover {
+    color: red;
+  }
+
+  .remove-of-liked-song {
+    color: red;
+
+    &:hover {
+      color: red;
+    }
+  }
 }
 
 nb-card-body:hover {

@@ -38,6 +38,7 @@ export class LoginDialogComponent implements OnInit {
 
   signOut() {
     this.authService.logOut();
+    location.reload();
     this.dialogRef.close();
   }
 

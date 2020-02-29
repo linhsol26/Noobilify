@@ -13,6 +13,7 @@ export class TrackComponent implements OnInit {
 
   @Input() file;
   likedSongFile: Array<any> = [];
+  likedSongId: Array<any> = [];
   user: any;
 
   constructor(
@@ -22,11 +23,17 @@ export class TrackComponent implements OnInit {
   ) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
-      this.cloudService.getLikedSongData(this.user).subscribe(data => {
-        this.likedSongFile = data.map(e => {
-          return e.payload.doc.data();
+      if (this.user) {
+        this.cloudService.getLikedSongData(this.user).subscribe(data => {
+          this.likedSongFile = data.map(e => e.payload.doc.data());
+          this.likedSongId = data.map(e => {
+            return {
+              likedSongId: e.payload.doc.id,
+              id: e.payload.doc.get('id')
+            };
+          });
         });
-      });
+      }
     });
   }
 
@@ -58,5 +65,13 @@ export class TrackComponent implements OnInit {
       }
     }
     return false;
+  }
+
+  deleteFromLikedSong(user, file) {
+    for (const song of this.likedSongId) {
+      if (song.id === file.id) {
+        return this.cloudService.deleteLikeSongData(user, song.likedSongId);
+      }
+    }
   }
 }
