@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CloudService } from 'src/app/services/cloud.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-uploader',
@@ -27,4 +26,5 @@ export class UploaderComponent implements OnInit {
   receivedMusicFile(event) {
     this.musicFiles = event;
   }
+
 }

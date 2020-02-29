@@ -8,7 +8,8 @@ import {
   NbCardModule,
   NbUserModule,
   NbListModule,
-  NbIconModule
+  NbIconModule,
+  NbTooltipModule
 } from '@nebular/theme';
 
 
@@ -20,7 +21,8 @@ import {
     NbCardModule,
     NbUserModule,
     NbListModule,
-    NbIconModule
+    NbIconModule,
+    NbTooltipModule
   ],
   exports: [TrackComponent]
 })

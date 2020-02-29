@@ -14,17 +14,17 @@ export class LikedSongComponent implements OnInit {
   user: any;
 
   constructor(
-    public cloudService: CloudService,
-    public authService: AuthService,
-    public audioService: AudioService
+    protected cloudService: CloudService,
+    protected authService: AuthService,
+    protected audioService: AudioService
   ) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
-      this.cloudService.getLikedSongData(this.user).subscribe(data => {
-        this.likedSongFile = data.map(e => {
-          return e.payload.doc.data();
+      if (this.user) {
+        this.cloudService.getLikedSongData(this.user).subscribe(data => {
+          this.likedSongFile = data.map(e => e.payload.doc.data());
         });
-      });
+      }
     });
   }
 
@@ -44,14 +44,12 @@ export class LikedSongComponent implements OnInit {
   }
 
   playLikedSongPlaylist() {
-    this.likedSongFile.forEach(file => {
-      this.openFile(file, this.cloudService.index);
-    });
-    this.playStream(this.cloudService.files[0].musicURL);
-  }
-
-  trackById(index: number, file) {
-    return file.id;
+    if (this.user) {
+      this.likedSongFile.forEach(file => {
+        this.openFile(file, this.cloudService.index);
+      });
+      this.playStream(this.cloudService.files[0].musicURL);
+    }
   }
 
 }

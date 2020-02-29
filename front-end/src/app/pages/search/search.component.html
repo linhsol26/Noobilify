@@ -1,0 +1,14 @@
+<nb-card size="tiny" class="search">
+  <nb-card-body>
+    <nb-card-header>
+      <h5>You searched for: {{value}}</h5>
+    </nb-card-header>
+
+    <nb-list listenWindowScroll="true" class="list-items">
+      <nb-list-item class="tracks" *ngFor="let file of searchFiles">
+        <app-track [file]="file"></app-track>
+      </nb-list-item>
+    </nb-list>
+
+  </nb-card-body>
+</nb-card>
