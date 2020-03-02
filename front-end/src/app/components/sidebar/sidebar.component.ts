@@ -42,7 +42,7 @@ export class SidebarComponent implements OnInit {
       hidden: false
     }
   ];
-  isCompact = true;
+  isCompact = false;
   constructor(private authService: AuthService, private cloud: CloudService,
               private sidebarService: NbSidebarService) {
     this.playlist.push({
@@ -74,15 +74,14 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {}
 
   change() {
-    if (this.isCompact === false) {
+    if (this.isCompact === true) {
       this.sidebarService.compact();
+      console.log(this.isCompact);
+      this.isCompact = false;
+    } else if (this.isCompact === false) {
+      this.sidebarService.expand();
+      console.log(this.isCompact);
       this.isCompact = true;
     }
-
-    if (this.isCompact === true) {
-      this.sidebarService.collapse();
-      this.isCompact = false;
-    }
   }
-
 }

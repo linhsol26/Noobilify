@@ -45,17 +45,7 @@ export class TrackComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nbMenuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'my-context-menu'),
-        map(({ item: { title } }) => title),
-      )
-      .subscribe(title => {
-        if (title === 'Add to Playlist-1') {
-
-        }
-      });
-    }
+  }
 
   playStream(url) {
     this.audioService.playStream(url).subscribe(events => {

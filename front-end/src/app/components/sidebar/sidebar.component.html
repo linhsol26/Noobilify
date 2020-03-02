@@ -1,3 +1,22 @@
-<!-- <button nbButton (click)="change()"><nb-icon icon="arrow-ios-back-outline"></nb-icon></button> -->
+<button *ngIf="!isCompact"
+        nbButton
+        ghost
+        status="danger"
+        size="tiny"
+        (click)="change()"
+        style="margin-left: -80%">
+        <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+</button>
+
+<button *ngIf="isCompact"
+        nbButton
+        ghost
+        status="danger"
+        size="medium"
+        (click)="change()"
+        style="margin-left: -5%">
+        <nb-icon icon="arrow-ios-back-outline"></nb-icon>
+</button>
+
 <nb-menu [items]="menuItems">
 </nb-menu>
