@@ -9,7 +9,7 @@ import { CloudService } from 'src/app/services/cloud.service';
 })
 export class SidebarComponent implements OnInit {
   user: any;
-  playlist = [];
+  playlist = new Array();
 
   menuItems = [
     {
@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit {
       title: 'Playlist',
       icon: 'headphones-outline',
       hidden: true,
-      children: this.playlist,
+      children: this.playlist
     },
     {
       title: 'Upload music',
@@ -51,9 +51,11 @@ export class SidebarComponent implements OnInit {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
       this.cloud.getAllPlaylist(this.user).subscribe(data => {
-        data.forEach(d => {
-          this.playlist.push(d.payload.doc.data());
-        });
+        // this.playlist = data.map(x => x.payload.doc.data());
+        this.playlist.length = 1;
+        data.forEach(x => {
+          this.playlist.push(x.payload.doc.data());
+        })
       });
       if (this.user !== null) {
         this.menuItems.forEach(item => (item.hidden = false));
@@ -62,7 +64,7 @@ export class SidebarComponent implements OnInit {
           if (item.title === 'Home' || item.title === 'Search') {
             item.hidden = false;
           } else {
-            item.hidden = false;
+            item.hidden = true;
           }
         });
       }
