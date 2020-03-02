@@ -8,54 +8,55 @@ import { CloudService } from 'src/app/services/cloud.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-
   user: any;
+  playlist = [];
 
   menuItems = [
     {
       title: 'Home',
       icon: 'home-outline',
-      link: ['home'],
+      link: ['home']
     },
     {
       title: 'Search',
       icon: 'search-outline',
-      link: ['search'],
+      link: ['search']
     },
     {
       title: 'Library',
       icon: 'book-outline',
       link: ['library'],
-      hidden: true,
+      hidden: true
     },
     {
       title: 'Playlist',
       icon: 'headphones-outline',
       hidden: true,
-      children: [
-        {
-          title: 'Liked Song',
-          icon: 'heart-outline',
-          link: ['library/liked-song']
-        },
-      ],
+      children: this.playlist,
     },
     {
       title: 'Upload music',
       icon: 'cloud-upload-outline',
       link: ['upload'],
-      hidden: true,
+      hidden: true
     }
   ];
 
-  constructor(
-    private authService: AuthService
-  ) {
+  constructor(private authService: AuthService, private cloud: CloudService) {
+    this.playlist.push({
+      title: 'Liked Song',
+      icon: 'heart-outline',
+      link: ['library/liked-song']
+    });
     this.authService.user$.subscribe(userData => {
       this.user = userData;
-
+      this.cloud.getAllPlaylist(this.user).subscribe(data => {
+        data.forEach(d => {
+          this.playlist.push(d.payload.doc.data());
+        });
+      });
       if (this.user !== null) {
-        this.menuItems.forEach(item => item.hidden = false);
+        this.menuItems.forEach(item => (item.hidden = false));
       } else {
         this.menuItems.forEach(item => {
           if (item.title === 'Home' || item.title === 'Search') {
@@ -68,6 +69,5 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

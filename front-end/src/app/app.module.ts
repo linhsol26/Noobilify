@@ -15,7 +15,8 @@ import {
   NbIconModule,
   NbDialogModule,
   NbToastrModule,
-  NbToastrService
+  NbToastrService,
+  NbInputModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { ComponentsModule } from './components/components.module';
@@ -40,7 +41,8 @@ import { environment } from 'src/environments/environment';
     NbToastrModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NbInputModule
   ],
   providers: [NbSidebarService, NbToastrService],
   bootstrap: [AppComponent]

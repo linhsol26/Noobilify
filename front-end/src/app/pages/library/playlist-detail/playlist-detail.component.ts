@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
+import { CreatePlaylistDialogComponent } from 'src/app/components/dialog/create-playlist-dialog/create-playlist-dialog.component';
 
 @Component({
   selector: 'app-playlist-detail',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaylistDetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: NbDialogService) { }
 
   ngOnInit() {
+  }
+
+  openDialog(){
+    this.dialog.open(CreatePlaylistDialogComponent, {
+      context: 'ahhihi',
+    });
   }
 
 }
