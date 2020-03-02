@@ -9,7 +9,8 @@ import {
   NbUserModule,
   NbListModule,
   NbIconModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbContextMenuModule
 } from '@nebular/theme';
 
 
@@ -22,7 +23,8 @@ import {
     NbUserModule,
     NbListModule,
     NbIconModule,
-    NbTooltipModule
+    NbTooltipModule,
+    NbContextMenuModule
   ],
   exports: [TrackComponent]
 })
