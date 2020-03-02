@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NbDialogRef, NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { auth } from 'firebase/app';
 import { AuthService } from 'src/app/services/auth.service';
-
 
 @Component({
   templateUrl: './login-dialog.component.html',
@@ -15,7 +14,7 @@ export class LoginDialogComponent implements OnInit {
     public authService: AuthService,
     private afAuth: AngularFireAuth,
     private dialogRef: NbDialogRef<LoginDialogComponent>,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
   ) { }
 
   ngOnInit() {
@@ -32,8 +31,12 @@ export class LoginDialogComponent implements OnInit {
     .then(() => {
       this.showToast('success', 'bottom-end');
       this.dialogRef.close();
+      setTimeout(() => {
+        location.reload();
+      }, 200);
     })
     .catch(err => console.log(err));
+
   }
 
   signOut() {

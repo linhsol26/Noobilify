@@ -8,6 +8,15 @@
     </nb-card-body>
   </nb-card>
 
+  <nb-card *ngFor="let playlist of playlists"vsize="tiny" class="playlist-detail box-shadow">
+    <nb-card-header>
+      {{playlist.title}}
+    </nb-card-header>
+    <nb-card-body class="liked-song">
+      <nb-icon icon="plus-circle-outline"></nb-icon>
+    </nb-card-body>
+  </nb-card>
+
   <nb-card size="tiny" class="playlist-detail box-shadow" (click)="openDialog()">
     <nb-card-header>
       Create a new playlist
