@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { async } from '@angular/core/testing';
+import { NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 
 @Component({
@@ -15,18 +15,18 @@ export class TrackComponent implements OnInit {
   @Input() file;
   likedSongFile: Array<any> = [];
   likedSongId: Array<any> = [];
-  user: any;
-
   items = [
-    { title: 'Add to Playlist-1' },
-    { title: 'Add to Playlist-2' },
+    {
+      title: 'Add to Playlist'
+    }
   ];
-  nbMenuService: any;
+  user: any;
 
   constructor(
     private audioService: AudioService,
     public cloudService: CloudService,
-    public authService: AuthService
+    public authService: AuthService,
+    private nbMenuService: NbMenuService
   ) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
@@ -45,6 +45,15 @@ export class TrackComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.nbMenuService.onItemClick()
+    .pipe(
+      filter(({ tag }) => tag === 'my-context-menu'),
+      map(({ item: { title } }) => title),
+    )
+    .subscribe(title => {
+      if (title === 'Add to Playlist') {
+      }
+    });
   }
 
   playStream(url) {

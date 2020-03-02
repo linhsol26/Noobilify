@@ -43,21 +43,27 @@ export class SidebarComponent implements OnInit {
     }
   ];
   isCompact = false;
-  constructor(private authService: AuthService, private cloud: CloudService,
-              private sidebarService: NbSidebarService) {
+  constructor(
+    private authService: AuthService,
+    private cloudService: CloudService,
+    private sidebarService: NbSidebarService
+    ) {
+
     this.playlist.push({
       title: 'Liked Song',
       icon: 'heart-outline',
       link: ['library/liked-song']
     });
+
     this.authService.user$.subscribe(userData => {
       this.user = userData;
-      this.cloud.getAllPlaylist(this.user).subscribe(data => {
+      this.cloudService.getAllPlaylist(this.user).subscribe(data => {
         this.playlist.length = 1;
         data.forEach(x => {
           this.playlist.push(x.payload.doc.data());
         });
       });
+
       if (this.user !== null) {
         this.menuItems.forEach(item => (item.hidden = false));
       } else {
