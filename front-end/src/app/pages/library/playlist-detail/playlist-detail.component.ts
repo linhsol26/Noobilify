@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import * as core from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { CreatePlaylistDialogComponent } from 'src/app/components/dialog/create-playlist-dialog/create-playlist-dialog.component';
 
-@Component({
+@core.Component({
   selector: 'app-playlist-detail',
   templateUrl: './playlist-detail.component.html',
   styleUrls: ['./playlist-detail.component.scss']
 })
-export class PlaylistDetailComponent implements OnInit {
+export class PlaylistDetailComponent implements core.OnInit {
+  constructor(private dialog: NbDialogService) {}
 
-  constructor(private dialog: NbDialogService) { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  openDialog(){
+  openDialog() {
     this.dialog.open(CreatePlaylistDialogComponent, {
-      context: 'ahhihi',
+      context: 'ahhihi'
     });
   }
-
 }

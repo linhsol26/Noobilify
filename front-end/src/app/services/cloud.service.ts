@@ -1,27 +1,27 @@
-import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { MusicData } from "../models/music-data.model";
-import { FormControl, Validators } from "@angular/forms";
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MusicData } from '../models/music-data.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CloudService {
   index = -1;
   currentFile: any = {};
   files: Array<any> = [];
 
-  name = new FormControl("", [
+  name = new FormControl('', [
     Validators.required,
     Validators.maxLength(100),
     Validators.minLength(2)
   ]);
-  singer = new FormControl("", [
+  singer = new FormControl('', [
     Validators.required,
     Validators.maxLength(100),
     Validators.minLength(2)
   ]);
-  artist = new FormControl("", [
+  artist = new FormControl('', [
     Validators.required,
     Validators.maxLength(100),
     Validators.minLength(2)
@@ -30,14 +30,14 @@ export class CloudService {
   constructor(private db: AngularFirestore) {}
 
   getMusicData() {
-    return this.db.collection("files").snapshotChanges();
+    return this.db.collection('files').snapshotChanges();
   }
 
   getLikedSongData(user) {
     if (user) {
       return this.db
         .doc(`users/${user.uid}`)
-        .collection("likedsong")
+        .collection('likedsong')
         .snapshotChanges();
     }
   }
@@ -46,7 +46,7 @@ export class CloudService {
     if (user) {
       return this.db
         .doc(`users/${user.uid}`)
-        .collection("playlist")
+        .collection('playlist')
         .snapshotChanges();
     }
   }

@@ -38,7 +38,7 @@ export class SidebarComponent implements OnInit {
       title: 'Upload music',
       icon: 'cloud-upload-outline',
       link: ['upload'],
-      hidden: true
+      hidden: false
     }
   ];
 
@@ -62,7 +62,7 @@ export class SidebarComponent implements OnInit {
           if (item.title === 'Home' || item.title === 'Search') {
             item.hidden = false;
           } else {
-            item.hidden = true;
+            item.hidden = false;
           }
         });
       }

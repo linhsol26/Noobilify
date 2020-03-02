@@ -35,8 +35,8 @@ export class UploadTaskComponent implements OnInit {
 
   startUpload() {
     if (
-        this.imgFile !== null &&
-        this.musicFile !== null &&
+        this.imgFile.type !== null &&
+        this.musicFile.type !== null &&
         this.cloudService.name.value !== '' &&
         this.cloudService.artist.value !== '' &&
         this.cloudService.singer.value !== '') {
@@ -70,11 +70,10 @@ export class UploadTaskComponent implements OnInit {
             musicPath: `${musicPath}`,
             imgPath: `${imgPath}`
           } as MusicData).then(() => {
-            this.imgFile = null;
-            this.musicFile = null;
             this.cloudService.name.reset();
             this.cloudService.singer.reset();
             this.cloudService.artist.reset();
+            location.reload();
           });
         }),
       );

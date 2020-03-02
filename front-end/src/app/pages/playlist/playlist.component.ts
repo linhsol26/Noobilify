@@ -27,7 +27,7 @@ export class PlaylistComponent implements OnInit {
       this.cloud.getPlaylist(user).subscribe(x => {
         x.forEach(data => {
           const doc = data.payload.doc.data();
-          if(doc.Title === this.selectedId){
+          if (doc.Title === this.selectedId) {
             this.playlist = doc;
             console.log(this.playlist);
           }
