@@ -35,8 +35,8 @@ export class UploadTaskComponent implements OnInit {
 
   startUpload() {
     if (
-        this.imgFile.type !== 'jpg/png' &&
-        this.musicFile.type !== 'mp3' &&
+        this.imgFile.type !== null &&
+        this.musicFile.type !== null &&
         this.cloudService.name.value !== '' &&
         this.cloudService.artist.value !== '' &&
         this.cloudService.singer.value !== '') {
