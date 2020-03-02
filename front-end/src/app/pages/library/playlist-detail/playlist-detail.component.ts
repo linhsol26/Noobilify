@@ -14,7 +14,7 @@ export class PlaylistDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  createPlaylist(){
+  openDialog(){
     this.dialog.open(CreatePlaylistDialogComponent, {
       context: 'ahhihi',
     });
