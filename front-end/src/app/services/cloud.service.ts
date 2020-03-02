@@ -88,9 +88,16 @@ export class CloudService {
     return userRef.delete();
   }
 
-  addPlayList() {}
+  createPlayList(user, name) {
+    return this.db.doc(`users/${user.uid}`).collection('playlist').doc(name).set({
+      title: name,
+      icon: 'folder-outline',
+      link: ['playlist/' + name],
+      Song: []
+    });
+  }
 
-  getPlaylist(user, id) {
+  getPlaylist(user) {
     if (user) {
       return this.db
         .doc(`users/${user.uid}`)
