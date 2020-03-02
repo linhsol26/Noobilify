@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,18 +10,29 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./playlist.component.scss']
 })
 export class PlaylistComponent implements OnInit {
-  playlist$: Observable<object>;
+  playlist;
   selectedId;
-  constructor(private auth: AuthService,private cloud: CloudService,private router: Router, private route: ActivatedRoute) {
-  }
+  constructor(
+    private auth: AuthService,
+    private cloud: CloudService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.route.paramMap.pipe(switchMap(params => {
-      this.selectedId = params.get('id');
-      return this.cloud.getPlaylist(this.auth.user$, params.get('id'));
-    })).subscribe(test => {
-      console.log(test);
+    this.route.paramMap.pipe(map(params => params.get('id'))).subscribe(id => {
+      this.selectedId = id;
+    });
+    this.auth.user$.subscribe(user => {
+      this.cloud.getPlaylist(user).subscribe(x => {
+        x.forEach(data => {
+          const doc = data.payload.doc.data();
+          if(doc.Title === this.selectedId){
+            this.playlist = doc;
+            console.log(this.playlist);
+          }
+        });
+      });
     });
   }
-
 }
