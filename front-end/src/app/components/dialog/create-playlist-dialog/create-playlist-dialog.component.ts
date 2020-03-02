@@ -15,5 +15,4 @@ export class CreatePlaylistDialogComponent implements OnInit {
   sumbit() {
     console.log(this.value);
   }
-
 }
