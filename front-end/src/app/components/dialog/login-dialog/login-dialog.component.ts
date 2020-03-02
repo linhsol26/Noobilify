@@ -31,9 +31,6 @@ export class LoginDialogComponent implements OnInit {
     .then(() => {
       this.showToast('success', 'bottom-end');
       this.dialogRef.close();
-      setTimeout(() => {
-        location.reload();
-      }, 200);
     })
     .catch(err => console.log(err));
 
