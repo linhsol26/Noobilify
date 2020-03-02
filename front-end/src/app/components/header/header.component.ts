@@ -8,16 +8,8 @@ import { NbThemeService } from '@nebular/theme';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public changeThemes: NbThemeService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  changeTheme(event) {
-    if (event === true) {
-      this.changeThemes.changeTheme('dark');
-    } else {
-      this.changeThemes.changeTheme('default');
-    }
   }
 }
