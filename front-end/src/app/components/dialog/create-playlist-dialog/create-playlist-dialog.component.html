@@ -3,7 +3,7 @@
     <input type="text" nbInput placeholder="Enter name" [(ngModel)]="value">
     <div class="button_group">
       <button nbButton (click)="sumbit()">Sumbit</button>
-      <button nbButton status="basic">Cancel</button>
+      <button nbButton (click)="dialogRef.close()" status="danger">Cancel</button>
     </div>
   </nb-card-body>
 </nb-card>

@@ -1,27 +1,27 @@
-import { Injectable } from "@angular/core";
-import { AngularFirestore } from "@angular/fire/firestore";
-import { MusicData } from "../models/music-data.model";
-import { FormControl, Validators } from "@angular/forms";
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { MusicData } from '../models/music-data.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class CloudService {
   index = -1;
   currentFile: any = {};
   files: Array<any> = [];
 
-  name = new FormControl("", [
+  name = new FormControl('', [
     Validators.required,
     Validators.maxLength(100),
     Validators.minLength(2)
   ]);
-  singer = new FormControl("", [
+  singer = new FormControl('', [
     Validators.required,
     Validators.maxLength(100),
     Validators.minLength(2)
   ]);
-  artist = new FormControl("", [
+  artist = new FormControl('', [
     Validators.required,
     Validators.maxLength(100),
     Validators.minLength(2)
@@ -30,14 +30,14 @@ export class CloudService {
   constructor(private db: AngularFirestore) {}
 
   getMusicData() {
-    return this.db.collection("files").snapshotChanges();
+    return this.db.collection('files').snapshotChanges();
   }
 
   getLikedSongData(user) {
     if (user) {
       return this.db
         .doc(`users/${user.uid}`)
-        .collection("likedsong")
+        .collection('likedsong')
         .snapshotChanges();
     }
   }
@@ -46,7 +46,7 @@ export class CloudService {
     if (user) {
       return this.db
         .doc(`users/${user.uid}`)
-        .collection("playlist")
+        .collection('playlist')
         .snapshotChanges();
     }
   }
@@ -54,7 +54,7 @@ export class CloudService {
   updateLikedSongData(user, file) {
     const userRef = this.db.firestore
       .doc(`users/${user.uid}`)
-      .collection("likedsong");
+      .collection('likedsong');
     return userRef.add(file);
   }
 
@@ -67,7 +67,7 @@ export class CloudService {
     imgURL,
     imgPath
   }: MusicData) {
-    const dataRef = this.db.collection("files");
+    const dataRef = this.db.collection('files');
     const data = {
       name,
       singer,
@@ -83,14 +83,21 @@ export class CloudService {
   deleteLikeSongData(user, id) {
     const userRef = this.db
       .doc(`users/${user.uid}`)
-      .collection("likedsong")
+      .collection('likedsong')
       .doc(id);
     return userRef.delete();
   }
 
-  addPlayList() {}
+  createPlayList(user, name) {
+    return this.db.doc(`users/${user.uid}`).collection('playlist').doc(name).set({
+      title: name,
+      icon: 'folder-outline',
+      link: ['playlist/' + name],
+      Song: []
+    });
+  }
 
-  getPlaylist(user,id) {
+  getPlaylist(user) {
     if (user) {
       return this.db
         .doc(`users/${user.uid}`)

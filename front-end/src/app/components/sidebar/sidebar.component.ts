@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CloudService } from 'src/app/services/cloud.service';
+import { NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,7 @@ import { CloudService } from 'src/app/services/cloud.service';
 })
 export class SidebarComponent implements OnInit {
   user: any;
-  playlist = [];
+  playlist = new Array();
 
   menuItems = [
     {
@@ -32,19 +33,20 @@ export class SidebarComponent implements OnInit {
       title: 'Playlist',
       icon: 'headphones-outline',
       hidden: true,
-      children: this.playlist,
+      children: this.playlist
     },
     {
       title: 'Upload music',
       icon: 'cloud-upload-outline',
       link: ['upload'],
-      hidden: true
+      hidden: false
     }
   ];
-
+  isCompact = false;
   constructor(
     private authService: AuthService,
-    private cloudService: CloudService
+    private cloudService: CloudService,
+    private sidebarService: NbSidebarService
     ) {
 
     this.playlist.push({
@@ -56,8 +58,9 @@ export class SidebarComponent implements OnInit {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
       this.cloudService.getAllPlaylist(this.user).subscribe(data => {
-        data.forEach(d => {
-          this.playlist.push(d.payload.doc.data());
+        this.playlist.length = 1;
+        data.forEach(x => {
+          this.playlist.push(x.payload.doc.data());
         });
       });
 
@@ -76,4 +79,16 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  change() {
+    if (this.isCompact === true) {
+      this.sidebarService.compact();
+      console.log(this.isCompact);
+      this.isCompact = false;
+    } else if (this.isCompact === false) {
+      this.sidebarService.expand();
+      console.log(this.isCompact);
+      this.isCompact = true;
+    }
+  }
 }
