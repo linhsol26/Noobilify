@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CloudService } from 'src/app/services/cloud.service';
+import { NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-sidebar',
@@ -41,8 +42,9 @@ export class SidebarComponent implements OnInit {
       hidden: false
     }
   ];
-
-  constructor(private authService: AuthService, private cloud: CloudService) {
+  isCompact = true;
+  constructor(private authService: AuthService, private cloud: CloudService,
+              private sidebarService: NbSidebarService) {
     this.playlist.push({
       title: 'Liked Song',
       icon: 'heart-outline',
@@ -51,11 +53,10 @@ export class SidebarComponent implements OnInit {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
       this.cloud.getAllPlaylist(this.user).subscribe(data => {
-        // this.playlist = data.map(x => x.payload.doc.data());
         this.playlist.length = 1;
         data.forEach(x => {
           this.playlist.push(x.payload.doc.data());
-        })
+        });
       });
       if (this.user !== null) {
         this.menuItems.forEach(item => (item.hidden = false));
@@ -72,4 +73,17 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  change() {
+    if (this.isCompact === false) {
+      this.sidebarService.compact();
+      this.isCompact = true;
+    }
+
+    if (this.isCompact === true) {
+      this.sidebarService.collapse();
+      this.isCompact = false;
+    }
+  }
+
 }

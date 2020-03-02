@@ -3,6 +3,7 @@ import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { async } from '@angular/core/testing';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-track',
@@ -15,6 +16,12 @@ export class TrackComponent implements OnInit {
   likedSongFile: Array<any> = [];
   likedSongId: Array<any> = [];
   user: any;
+
+  items = [
+    { title: 'Add to Playlist-1' },
+    { title: 'Add to Playlist-2' },
+  ];
+  nbMenuService: any;
 
   constructor(
     private audioService: AudioService,
@@ -38,7 +45,17 @@ export class TrackComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
+    this.nbMenuService.onItemClick()
+      .pipe(
+        filter(({ tag }) => tag === 'my-context-menu'),
+        map(({ item: { title } }) => title),
+      )
+      .subscribe(title => {
+        if (title === 'Add to Playlist-1') {
+
+        }
+      });
+    }
 
   playStream(url) {
     this.audioService.playStream(url).subscribe(events => {

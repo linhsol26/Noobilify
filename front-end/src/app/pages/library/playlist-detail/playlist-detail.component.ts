@@ -10,19 +10,23 @@ import { CloudService } from 'src/app/services/cloud.service';
   styleUrls: ['./playlist-detail.component.scss']
 })
 export class PlaylistDetailComponent implements core.OnInit {
-  constructor(private dialog: NbDialogService, private auth: AuthService, private cloud: CloudService) {}
+  constructor(
+    private dialog: NbDialogService,
+    private auth: AuthService,
+    private cloud: CloudService
+  ) {}
   playlists = [];
   ngOnInit() {
     this.auth.user$.subscribe(user => {
-      if(user){
+      if (user) {
         this.cloud.getAllPlaylist(user).subscribe(data => {
           this.playlists.length = 0;
           data.forEach(x => {
             this.playlists.push(x.payload.doc.data());
-          })
-        })
+          });
+        });
       }
-    })
+    });
   }
 
   openDialog() {

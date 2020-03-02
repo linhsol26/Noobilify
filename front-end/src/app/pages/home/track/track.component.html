@@ -34,7 +34,10 @@
       nbTooltip="More"
       nbTooltipPlacement="top"
       nbTooltipStatus="primary">
-        <nb-icon icon="more-horizontal-outline"></nb-icon>
+        <nb-icon icon="more-horizontal-outline"
+        [nbContextMenu]="items"
+        nbContextMenuTag="my-context-menu"
+        ></nb-icon>
       </button>
     </div>
   </nb-card-body>
