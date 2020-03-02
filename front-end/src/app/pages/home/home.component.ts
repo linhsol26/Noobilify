@@ -30,8 +30,10 @@ export class HomeComponent implements OnInit {
         };
       });
 
-      for (let i = this.files.length - 1; i > this.files.length - 6; i--) {
-        this.headerFiles.push(this.files[i]);
+      if (this.files.length > 5) {
+        for (let i = this.files.length - 1; i > this.files.length - 6; i--) {
+          this.headerFiles.push(this.files[i]);
+        }
       }
     });
   }

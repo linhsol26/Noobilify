@@ -18,7 +18,14 @@
       <nb-icon icon="google-outline"></nb-icon>
       Your are logged with Google
     </nb-card-header>
-    <nb-card-body>
+    <nb-card-body *ngIf="authService.user$ | async as user">
+      <nb-user size="giant"
+             name={{user.displayName}}
+             title={{user.email}}
+             picture={{user.photoURL}}
+             shape="rectangle"
+             style="margin-bottom: 5vh;">
+      </nb-user>
       <button nbButton fullWidth status="primary" (click)="signOut()">Log out</button>
     </nb-card-body>
   </nb-card>
