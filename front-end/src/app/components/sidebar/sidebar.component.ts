@@ -42,19 +42,25 @@ export class SidebarComponent implements OnInit {
     }
   ];
 
-  constructor(private authService: AuthService, private cloud: CloudService) {
+  constructor(
+    private authService: AuthService,
+    private cloudService: CloudService
+    ) {
+
     this.playlist.push({
       title: 'Liked Song',
       icon: 'heart-outline',
       link: ['library/liked-song']
     });
+
     this.authService.user$.subscribe(userData => {
       this.user = userData;
-      this.cloud.getAllPlaylist(this.user).subscribe(data => {
+      this.cloudService.getAllPlaylist(this.user).subscribe(data => {
         data.forEach(d => {
           this.playlist.push(d.payload.doc.data());
         });
       });
+
       if (this.user !== null) {
         this.menuItems.forEach(item => (item.hidden = false));
       } else {
