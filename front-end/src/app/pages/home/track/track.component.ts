@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AudioService } from 'src/app/services/audio.service';
-import { CloudService } from 'src/app/services/cloud.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AudioService } from '../../../services/audio.service';
+import { CloudService } from '../../../services/cloud.service';
+import { AuthService } from '../../../services/auth.service';
 import { async } from '@angular/core/testing';
 import { filter, map } from 'rxjs/operators';
+import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'app-track',
@@ -11,23 +12,20 @@ import { filter, map } from 'rxjs/operators';
   styleUrls: ['./track.component.scss']
 })
 export class TrackComponent implements OnInit {
-
-  @Input() file;
+  @Input() file: any;
   likedSongFile: Array<any> = [];
   likedSongId: Array<any> = [];
+  Playlists = [];
   user: any;
 
-  items = [
-    { title: 'Add to Playlist-1' },
-    { title: 'Add to Playlist-2' },
-  ];
+  items = [];
   nbMenuService: any;
 
   constructor(
     private audioService: AudioService,
     public cloudService: CloudService,
-    public authService: AuthService
-  ) {
+    public authService: AuthService,
+    private menuService: NbMenuService) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
       if (this.user) {
@@ -40,22 +38,32 @@ export class TrackComponent implements OnInit {
             };
           });
         });
+        this.cloudService.getAllPlaylist(this.user).subscribe(data => {
+          this.items.length = 0;
+          data.forEach(x => {
+            const temp = { title: x.payload.doc.data().title };
+            this.items.push(temp);
+          });
+        });
       }
     });
   }
 
   ngOnInit() {
-    this.nbMenuService.onItemClick()
-      .pipe(
-        filter(({ tag }) => tag === 'my-context-menu'),
-        map(({ item: { title } }) => title),
-      )
-      .subscribe(title => {
-        if (title === 'Add to Playlist-1') {
-
-        }
-      });
-    }
+    // this.nbMenuService
+    //   .onItemClick()
+    //   .pipe(
+    //     filter(({ tag }) => tag === "my-context-menu"),
+    //     map(({ item: { title } }) => title)
+    //   )
+    //   .subscribe(title => {
+    //     if (title === "Add to Playlist-1") {
+    //     }
+    //   });
+    this.menuService.onItemClick().subscribe(() => {
+      console.log('ahihi');
+    });
+  }
 
   playStream(url) {
     this.audioService.playStream(url).subscribe(events => {
