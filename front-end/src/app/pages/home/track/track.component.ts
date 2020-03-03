@@ -78,7 +78,6 @@ export class TrackComponent implements OnInit {
             data.Song.forEach(element => {
               if (element.name == this.file.name) {
                 isExit = true
-                console.log('Trùng');
                 return;
               };
             });
