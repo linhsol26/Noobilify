@@ -9,9 +9,8 @@
 
     <nb-list listenWindowScroll="true" class="list-items">
       <nb-list-item class="tracks" *ngFor="let file of playlist.Song">
-        <app-track [file]="file"></app-track>
+        <app-track [isInPlaylist]="true" [tag]="file.id" [file]="file" [playlistName] ="playlist.title"></app-track>
       </nb-list-item>
     </nb-list>
-
   </nb-card-body>
 </nb-card>
