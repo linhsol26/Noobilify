@@ -1,17 +1,16 @@
+import { AudioService } from "../../../services/audio.service";
+import { CloudService } from "../../../services/cloud.service";
+import { AuthService } from "../../../services/auth.service";
 
-import { AudioService } from '../../../services/audio.service';
-import { CloudService } from '../../../services/cloud.service';
-import { AuthService } from '../../../services/auth.service';
-
-import { filter, map } from 'rxjs/operators';
-import { NbMenuService, NbMenuItem } from '@nebular/theme';
-import { Observable } from 'rxjs';
-import { OnInit, Input, Component } from '@angular/core';
+import { filter, map } from "rxjs/operators";
+import { NbMenuService, NbMenuItem } from "@nebular/theme";
+import { Observable } from "rxjs";
+import { OnInit, Input, Component } from "@angular/core";
 
 @Component({
-  selector: 'app-track',
-  templateUrl: './track.component.html',
-  styleUrls: ['./track.component.scss']
+  selector: "app-track",
+  templateUrl: "./track.component.html",
+  styleUrls: ["./track.component.scss"]
 })
 export class TrackComponent implements OnInit {
   @Input() file: any;
@@ -27,7 +26,7 @@ export class TrackComponent implements OnInit {
     private audioService: AudioService,
     public cloudService: CloudService,
     public authService: AuthService,
-    private nbMenuService: NbMenuService,
+    private nbMenuService: NbMenuService
   ) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
@@ -37,7 +36,7 @@ export class TrackComponent implements OnInit {
           this.likedSongId = data.map(e => {
             return {
               likedSongId: e.payload.doc.id,
-              id: e.payload.doc.get('id')
+              id: e.payload.doc.get("id")
             };
           });
         });
@@ -52,7 +51,6 @@ export class TrackComponent implements OnInit {
         });
       }
     });
-
   }
 
   ngOnInit() {
@@ -73,19 +71,29 @@ export class TrackComponent implements OnInit {
     // }
 
     this.nbMenuService.onItemClick().subscribe(x => {
-      if(x.tag == this.file.id){
+      var isExit = false;
+      if (x.tag == this.file.id) {
         this.Playlists.forEach(data => {
-            if(data.title == x.item.title){
+          if (data.title == x.item.title) {
+            data.Song.forEach(element => {
+              if (element.name == this.file.name) {
+                isExit = true
+                console.log('Trùng');
+                return;
+              };
+            });
+            if (!isExit) {
               data.Song.push(this.file);
-              this.cloudService.addSongToPlaylist(this.user, data, data.title).then(() => {
-                console.log('DONE');
-              }).catch(err => {
-                console.log(err.message);
-              })
-              console.log(data);
-              return;
-            }
-
+              this.cloudService
+                .addSongToPlaylist(this.user, data, data.title)
+                .then(() => {
+                  console.log("DONE");
+                })
+                .catch(err => {
+                  console.log(err.message);
+                });
+            };
+          }
         });
       }
     });
