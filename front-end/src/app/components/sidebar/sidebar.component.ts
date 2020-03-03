@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { NbSidebarService } from '@nebular/theme';
@@ -8,9 +8,15 @@ import { NbSidebarService } from '@nebular/theme';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   user: any;
-  playlist = new Array();
+  playlist: Array<any> = [
+    {
+      title: 'Liked Song',
+      icon: 'heart-outline',
+      link: ['library/liked-song']
+    }
+  ];
 
   menuItems = [
     {
@@ -39,24 +45,33 @@ export class SidebarComponent implements OnInit {
       title: 'Upload music',
       icon: 'cloud-upload-outline',
       link: ['upload'],
-      hidden: false
+      hidden: true
     }
   ];
+
   isCompact = false;
+
   constructor(
     private authService: AuthService,
     private cloudService: CloudService,
     private sidebarService: NbSidebarService
     ) {
+    this.checkUserIsLogin();
+  }
 
-    this.playlist.push({
-      title: 'Liked Song',
-      icon: 'heart-outline',
-      link: ['library/liked-song']
-    });
+  ngOnInit() {
+  }
 
-    this.authService.user$.subscribe(userData => {
+  ngOnDestroy() {
+    this.checkUserIsLogin().unsubscribe();
+  }
+
+
+  checkUserIsLogin() {
+    return this.authService.user$.subscribe(userData => {
       this.user = userData;
+
+      // Cua Tuan
       this.cloudService.getAllPlaylist(this.user).subscribe(data => {
         this.playlist.length = 1;
         data.forEach(x => {
@@ -78,16 +93,12 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
-  change() {
+  changeSidaBar() {
     if (this.isCompact === true) {
       this.sidebarService.compact();
-      console.log(this.isCompact);
       this.isCompact = false;
-    } else if (this.isCompact === false) {
+    } else {
       this.sidebarService.expand();
-      console.log(this.isCompact);
       this.isCompact = true;
     }
   }

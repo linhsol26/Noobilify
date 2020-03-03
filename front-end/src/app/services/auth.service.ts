@@ -18,6 +18,12 @@ export class AuthService {
     private db: AngularFirestore,
     private router: Router
   ) {
+    this.checkUser();
+  }
+
+  user$: Observable<any>;
+
+  checkUser() {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -28,8 +34,6 @@ export class AuthService {
       })
     );
   }
-
-  user$: Observable<any>;
 
   async logOut() {
     await this.afAuth.auth.signOut();

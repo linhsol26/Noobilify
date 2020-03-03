@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,7 +10,7 @@ import { filter, map } from 'rxjs/operators';
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.scss']
 })
-export class TrackComponent implements OnInit {
+export class TrackComponent implements OnInit, OnDestroy {
 
   @Input() file;
   likedSongFile: Array<any> = [];
@@ -28,7 +28,32 @@ export class TrackComponent implements OnInit {
     public authService: AuthService,
     private nbMenuService: NbMenuService
   ) {
-    this.authService.user$.subscribe(userData => {
+    this.getLikedSongData();
+  }
+
+  ngOnInit() {
+    this.menuPlaylistClick();
+  }
+
+  ngOnDestroy() {
+    this.getLikedSongData().unsubscribe();
+    this.menuPlaylistClick().unsubscribe();
+  }
+
+  menuPlaylistClick() {
+    return this.nbMenuService.onItemClick()
+    .pipe(
+      filter(({ tag }) => tag === 'my-context-menu'),
+      map(({ item: { title } }) => title),
+    )
+    .subscribe(title => {
+      if (title === 'Add to Playlist') {
+      }
+    });
+  }
+
+  getLikedSongData() {
+    return this.authService.user$.subscribe(userData => {
       this.user = userData;
       if (this.user) {
         this.cloudService.getLikedSongData(this.user).subscribe(data => {
@@ -40,18 +65,6 @@ export class TrackComponent implements OnInit {
             };
           });
         });
-      }
-    });
-  }
-
-  ngOnInit() {
-    this.nbMenuService.onItemClick()
-    .pipe(
-      filter(({ tag }) => tag === 'my-context-menu'),
-      map(({ item: { title } }) => title),
-    )
-    .subscribe(title => {
-      if (title === 'Add to Playlist') {
       }
     });
   }
