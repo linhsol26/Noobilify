@@ -42,22 +42,28 @@ export class SidebarComponent implements OnInit {
       hidden: false
     }
   ];
-  isCompact = true;
-  constructor(private authService: AuthService, private cloud: CloudService,
-              private sidebarService: NbSidebarService) {
+  isCompact = false;
+  constructor(
+    private authService: AuthService,
+    private cloudService: CloudService,
+    private sidebarService: NbSidebarService
+    ) {
+
     this.playlist.push({
       title: 'Liked Song',
       icon: 'heart-outline',
       link: ['library/liked-song']
     });
+
     this.authService.user$.subscribe(userData => {
       this.user = userData;
-      this.cloud.getAllPlaylist(this.user).subscribe(data => {
+      this.cloudService.getAllPlaylist(this.user).subscribe(data => {
         this.playlist.length = 1;
         data.forEach(x => {
           this.playlist.push(x.payload.doc.data());
         });
       });
+
       if (this.user !== null) {
         this.menuItems.forEach(item => (item.hidden = false));
       } else {
@@ -75,15 +81,14 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {}
 
   change() {
-    if (this.isCompact === false) {
+    if (this.isCompact === true) {
       this.sidebarService.compact();
+      console.log(this.isCompact);
+      this.isCompact = false;
+    } else if (this.isCompact === false) {
+      this.sidebarService.expand();
+      console.log(this.isCompact);
       this.isCompact = true;
     }
-
-    if (this.isCompact === true) {
-      this.sidebarService.collapse();
-      this.isCompact = false;
-    }
   }
-
 }

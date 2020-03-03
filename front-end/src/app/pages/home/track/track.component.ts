@@ -1,10 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+
 import { AudioService } from '../../../services/audio.service';
 import { CloudService } from '../../../services/cloud.service';
 import { AuthService } from '../../../services/auth.service';
-import { async } from '@angular/core/testing';
+
 import { filter, map } from 'rxjs/operators';
-import { NbMenuService } from '@nebular/theme';
+import { NbMenuService, NbMenuItem } from '@nebular/theme';
+import { Observable } from 'rxjs';
+import { OnInit, Input, Component } from '@angular/core';
 
 @Component({
   selector: 'app-track',
@@ -13,19 +15,20 @@ import { NbMenuService } from '@nebular/theme';
 })
 export class TrackComponent implements OnInit {
   @Input() file: any;
+  @Input() tag: any;
   likedSongFile: Array<any> = [];
   likedSongId: Array<any> = [];
   Playlists = [];
   user: any;
 
   items = [];
-  nbMenuService: any;
 
   constructor(
     private audioService: AudioService,
     public cloudService: CloudService,
     public authService: AuthService,
-    private menuService: NbMenuService) {
+    private nbMenuService: NbMenuService,
+  ) {
     this.authService.user$.subscribe(userData => {
       this.user = userData;
       if (this.user) {
@@ -40,28 +43,51 @@ export class TrackComponent implements OnInit {
         });
         this.cloudService.getAllPlaylist(this.user).subscribe(data => {
           this.items.length = 0;
+          this.Playlists.length = 0;
           data.forEach(x => {
             const temp = { title: x.payload.doc.data().title };
             this.items.push(temp);
+            this.Playlists.push(x.payload.doc.data());
           });
         });
       }
     });
+
   }
 
   ngOnInit() {
-    // this.nbMenuService
-    //   .onItemClick()
-    //   .pipe(
-    //     filter(({ tag }) => tag === "my-context-menu"),
-    //     map(({ item: { title } }) => title)
-    //   )
-    //   .subscribe(title => {
-    //     if (title === "Add to Playlist-1") {
-    //     }
+    // this.nbMenuService.onItemClick()
+    // .pipe(
+    //   filter(({ tag }) => tag === 'my-context-menu'),
+    //   map(({ item: { title } }) => title),
+    // )
+    // .subscribe(title => {
+    //   if (title === 'Add to Playlist') {
+    //   }
+    // });
+
+    // this.nbMenuService.onItemClick = function() {
+    //   return new Observable(x => {
+    //     console.log(x.);
     //   });
-    this.menuService.onItemClick().subscribe(() => {
-      console.log('ahihi');
+    // }
+
+    this.nbMenuService.onItemClick().subscribe(x => {
+      if(x.tag == this.file.id){
+        this.Playlists.forEach(data => {
+            if(data.title == x.item.title){
+              data.Song.push(this.file);
+              this.cloudService.addSongToPlaylist(this.user, data, data.title).then(() => {
+                console.log('DONE');
+              }).catch(err => {
+                console.log(err.message);
+              })
+              console.log(data);
+              return;
+            }
+
+        });
+      }
     });
   }
 

@@ -12,7 +12,6 @@ import { AuthService } from '../../services/auth.service';
 export class PlaylistComponent implements OnInit {
   playlist;
   selectedId;
-  songFile = [];
   constructor(
     private auth: AuthService,
     private cloud: CloudService,
@@ -29,7 +28,6 @@ export class PlaylistComponent implements OnInit {
             const doc = data.payload.doc.data();
             if (doc.title === this.selectedId) {
               this.playlist = doc;
-              console.log(this.playlist);
             }
           });
         });

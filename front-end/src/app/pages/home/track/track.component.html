@@ -15,8 +15,11 @@
         <nb-icon icon="heart-outline" class="remove-of-liked-song"></nb-icon>
       </button>
 
-      <button nbTooltip="More" nbTooltipPlacement="top" nbTooltipStatus="primary">
-        <nb-icon icon="more-horizontal-outline" [nbContextMenu]="items" nbContextMenuTag="my-context-menu"></nb-icon>
+      <button
+        [nbContextMenu]="items"
+        nbContextMenuTrigger="click"
+        [nbContextMenuTag]="tag">
+        <nb-icon icon="more-horizontal-outline"></nb-icon>
       </button>
     </div>
   </nb-card-body>
