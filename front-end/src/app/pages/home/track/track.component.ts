@@ -1,34 +1,44 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { AudioService } from 'src/app/services/audio.service';
-import { CloudService } from 'src/app/services/cloud.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { NbMenuService } from '@nebular/theme';
-import { filter, map } from 'rxjs/operators';
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { AudioService } from "src/app/services/audio.service";
+import { CloudService } from "src/app/services/cloud.service";
+import { AuthService } from "src/app/services/auth.service";
+import { NbMenuService, NbToastrService } from "@nebular/theme";
+import { filter, map } from "rxjs/operators";
 
 @Component({
-  selector: 'app-track',
-  templateUrl: './track.component.html',
-  styleUrls: ['./track.component.scss']
+  selector: "app-track",
+  templateUrl: "./track.component.html",
+  styleUrls: ["./track.component.scss"]
 })
 export class TrackComponent implements OnInit, OnDestroy {
-
   @Input() file;
   likedSongFile: Array<any> = [];
   likedSongId: Array<any> = [];
+  Playlists = [];
+  user: any;
+
   items = [
     {
-      title: 'Add to Playlist'
+      title: ""
     }
   ];
-  user: any;
+
+  @Input()
+  tag;
+  @Input()
+  isInPlaylist;
+  @Input()
+  playlistName = "";
 
   constructor(
     private audioService: AudioService,
     public cloudService: CloudService,
     public authService: AuthService,
-    private nbMenuService: NbMenuService
+    private nbMenuService: NbMenuService,
+    private toater: NbToastrService
   ) {
     this.getLikedSongData();
+    this.getPlaylistData();
   }
 
   ngOnInit() {
@@ -41,14 +51,42 @@ export class TrackComponent implements OnInit, OnDestroy {
   }
 
   menuPlaylistClick() {
-    return this.nbMenuService.onItemClick()
-    .pipe(
-      filter(({ tag }) => tag === 'my-context-menu'),
-      map(({ item: { title } }) => title),
-    )
-    .subscribe(title => {
-      if (title === 'Add to Playlist') {
-      }
+    return this.nbMenuService.onItemClick().subscribe(x => {
+      if (this.tag == x.tag)
+        if (!this.isInPlaylist) {
+          var isExit = false;
+          if (x.tag == this.file.id) {
+            console.log(x.tag + " " + this.file.id);
+            this.Playlists.forEach(data => {
+              if (data.title == x.item.title) {
+                for (const element of data.Song) {
+                  if (element.name == this.file.name) {
+                    isExit = true;
+                    break;
+                  }
+                }
+                if (!isExit) {
+                  data.Song.push(this.file);
+                  this.cloudService
+                    .addSongToPlaylist(this.user, data, data.title)
+                    .then(result => {
+                      console.log("ahihi");
+                      this.toater.show("Thêm thành công", "Thông báo", {
+                        status: "success"
+                      });
+                    })
+                    .catch(err => {
+                      console.log(err.message);
+                    });
+                } else {
+                  this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
+                    status: "warning"
+                  });
+                }
+              }
+            });
+          }
+        }
     });
   }
 
@@ -61,9 +99,46 @@ export class TrackComponent implements OnInit, OnDestroy {
           this.likedSongId = data.map(e => {
             return {
               likedSongId: e.payload.doc.id,
-              id: e.payload.doc.get('id')
+              id: e.payload.doc.get("id")
             };
           });
+        });
+        // if(!this.isInPlaylist) {
+        //   this.cloudService.getAllPlaylist(this.user).subscribe(data => {
+        //     this.items.length = 0;
+        //     this.Playlists.length = 0;
+        //     data.forEach(x => {
+        //       const temp = { title: x.payload.doc.data().title };
+        //       this.items.push(temp);
+        //       this.Playlists.push(x.payload.doc.data());
+        //     });
+        //   });
+        // }else if(this.isInPlaylist) {
+        //   this.items.length = 0;
+        //   this.items.push({title: "Remove from playlist"});
+        // }
+      }
+    });
+  }
+
+  getPlaylistData() {
+    this.authService.user$.subscribe(user => {
+      if (user != null) {
+        this.cloudService.getAllPlaylist(this.user).subscribe(data => {
+          this.items.length = 0;
+          this.Playlists.length = 0;
+          if (!this.isInPlaylist) {
+            data.forEach(x => {
+              const temp = { title: x.payload.doc.data().title };
+              this.items.push(temp);
+              this.Playlists.push(x.payload.doc.data());
+            });
+          } else {
+            this.items.push({ title: "Remove from playlist" });
+            data.forEach(x => {
+              this.Playlists.push(x.payload.doc.data());
+            });
+          }
         });
       }
     });

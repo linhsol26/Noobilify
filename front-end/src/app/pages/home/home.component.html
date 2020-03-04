@@ -14,7 +14,7 @@
 
     <nb-list listenWindowScroll="true" class="list-items">
       <nb-list-item class="tracks" *ngFor="let file of files">
-        <app-track [file]="file"></app-track>
+        <app-track [file]="file" [tag]="file.id" [isInPlaylist]="false" [playlistName]="file.name"></app-track>
       </nb-list-item>
     </nb-list>
 

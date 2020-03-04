@@ -1,39 +1,24 @@
 <nb-card>
   <nb-card-body>
-    <nb-user
-      nbTooltip="Play"
-      nbTooltipPlacement="top"
-      nbTooltipStatus="primary"
-      (click)="openFile(file, cloudService.index)"
-      shape="rectangle"
-      size="medium"
-      name={{file.name}}
-      title={{file.singer}}
-      picture={{file.imgURL}}>
+    <nb-user nbTooltip="Play" nbTooltipPlacement="top" nbTooltipStatus="primary"
+      (click)="openFile(file, cloudService.index)" shape="rectangle" size="medium" name={{file.name}}
+      title={{file.singer}} picture={{file.imgURL}}>
     </nb-user>
     <div *ngIf="authService.user$ | async as user">
-      <button
-        *ngIf="!isInLikedSong(file)"
-        nbTooltip="Add to liked song"
-        nbTooltipPlacement="top"
-        nbTooltipStatus="primary"
-        (click)="addToLikedSong(user, file)">
+      <button *ngIf="!isInLikedSong(file)" nbTooltip="Add to liked song" nbTooltipPlacement="top"
+        nbTooltipStatus="primary" (click)="addToLikedSong(user, file)">
         <nb-icon icon="heart-outline" class="add-to-liked-song"></nb-icon>
       </button>
 
-      <button
-        *ngIf="isInLikedSong(file)"
-        nbTooltip="remove of liked song"
-        nbTooltipPlacement="top"
-        nbTooltipStatus="primary"
-        (click)="deleteFromLikedSong(user, file)">
+      <button *ngIf="isInLikedSong(file)" nbTooltip="remove of liked song" nbTooltipPlacement="top"
+        nbTooltipStatus="primary" (click)="deleteFromLikedSong(user, file)">
         <nb-icon icon="heart-outline" class="remove-of-liked-song"></nb-icon>
       </button>
 
       <button
         [nbContextMenu]="items"
         nbContextMenuTrigger="click"
-        nbContextMenuTag="my-context-menu">
+        [nbContextMenuTag]="tag">
         <nb-icon icon="more-horizontal-outline"></nb-icon>
       </button>
     </div>

@@ -105,4 +105,8 @@ export class CloudService {
         .snapshotChanges();
     }
   }
+
+  addSongToPlaylist(user, playlist, title) {
+    return this.db.doc(`users/${user.uid}`).collection('playlist').doc(title).set(playlist);
+  }
 }
