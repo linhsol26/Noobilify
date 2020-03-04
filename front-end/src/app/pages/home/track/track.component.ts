@@ -67,19 +67,19 @@ export class TrackComponent implements OnInit, OnDestroy {
                 if (!isExit) {
                   data.Song.push(this.file);
                   await this.cloudService
-                    .addSongToPlaylist(this.user, data, data.title)
-                    .then(result => {
-                      this.toater.show("Thêm thành công", "Thông báo", {
-                        status: "success"
-                      });
-                    })
-                    .catch(err => {
-                      console.log(err.message);
-                    });
-                } else {
-                  this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
-                    status: "warning"
-                  });
+                    .addSongToPlaylist(this.user, data, data.title);
+                //     .then(() => {
+                //       this.toater.show("Thêm thành công", "Thông báo", {
+                //         status: "success"
+                //       });
+                //     })
+                //     .catch(err => {
+                //       console.log(err.message);
+                //     });
+                // } else {
+                //   this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
+                //     status: "warning"
+                //   });
                 }
               }
             });
@@ -131,20 +131,26 @@ export class TrackComponent implements OnInit, OnDestroy {
   removeFromPlaylist() {
     let arr = this.playlistName.Song.map(x => x);
     arr.length = 0;
-    for(const Song of this.playlistName.Song) {
-      if(this.file.name !== Song.name) {
+    for (const Song of this.playlistName.Song) {
+      if (this.file.name !== Song.name) {
         arr.push(Song);
       }
     }
     this.playlistName.Song = arr;
-      if(this.user != null) {
-        this.cloudService.addSongToPlaylist(this.user, this.playlistName, this.playlistName.title).then(result => {
-          console.log('DONE');
-        }).catch(err => {
-          console.log("ERROR");
+    if (this.user != null) {
+      this.cloudService
+        .addSongToPlaylist(
+          this.user,
+          this.playlistName,
+          this.playlistName.title
+        )
+        .then(result => {
+          console.log("DONE");
         })
-      }
-
+        .catch(err => {
+          console.log("ERROR");
+        });
+    }
   }
 
   playStream(url) {
