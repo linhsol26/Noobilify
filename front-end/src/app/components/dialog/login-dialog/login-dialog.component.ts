@@ -42,8 +42,8 @@ export class LoginDialogComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
-  signOut() {
-    this.authService.logOut();
+  async signOut() {
+    await this.authService.logOut();
     location.reload();
     this.dialogRef.close();
   }

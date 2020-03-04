@@ -15,11 +15,12 @@
         <nb-icon icon="heart-outline" class="remove-of-liked-song"></nb-icon>
       </button>
 
-      <button
-        [nbContextMenu]="items"
-        nbContextMenuTrigger="click"
-        [nbContextMenuTag]="tag">
+      <button *ngIf="!isInPlaylist" [nbContextMenu]="items" nbContextMenuTrigger="click" [nbContextMenuTag]="tag">
         <nb-icon icon="more-horizontal-outline"></nb-icon>
+      </button>
+      <button *ngIf="isInPlaylist" (click)="removeFromPlaylist()">
+        <nb-icon icon="trash-outline">
+        </nb-icon>
       </button>
     </div>
   </nb-card-body>

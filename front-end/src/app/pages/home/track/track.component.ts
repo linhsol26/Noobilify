@@ -28,7 +28,7 @@ export class TrackComponent implements OnInit, OnDestroy {
   @Input()
   isInPlaylist;
   @Input()
-  playlistName = "";
+  playlistName;
 
   constructor(
     private audioService: AudioService,
@@ -56,8 +56,7 @@ export class TrackComponent implements OnInit, OnDestroy {
         if (!this.isInPlaylist) {
           var isExit = false;
           if (x.tag == this.file.id) {
-            console.log(x.tag + " " + this.file.id);
-            this.Playlists.forEach(data => {
+            this.Playlists.forEach(async data => {
               if (data.title == x.item.title) {
                 for (const element of data.Song) {
                   if (element.name == this.file.name) {
@@ -67,10 +66,9 @@ export class TrackComponent implements OnInit, OnDestroy {
                 }
                 if (!isExit) {
                   data.Song.push(this.file);
-                  this.cloudService
+                  await this.cloudService
                     .addSongToPlaylist(this.user, data, data.title)
                     .then(result => {
-                      console.log("ahihi");
                       this.toater.show("Thêm thành công", "Thông báo", {
                         status: "success"
                       });
@@ -103,20 +101,6 @@ export class TrackComponent implements OnInit, OnDestroy {
             };
           });
         });
-        // if(!this.isInPlaylist) {
-        //   this.cloudService.getAllPlaylist(this.user).subscribe(data => {
-        //     this.items.length = 0;
-        //     this.Playlists.length = 0;
-        //     data.forEach(x => {
-        //       const temp = { title: x.payload.doc.data().title };
-        //       this.items.push(temp);
-        //       this.Playlists.push(x.payload.doc.data());
-        //     });
-        //   });
-        // }else if(this.isInPlaylist) {
-        //   this.items.length = 0;
-        //   this.items.push({title: "Remove from playlist"});
-        // }
       }
     });
   }
@@ -142,6 +126,25 @@ export class TrackComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  removeFromPlaylist() {
+    let arr = this.playlistName.Song.map(x => x);
+    arr.length = 0;
+    for(const Song of this.playlistName.Song) {
+      if(this.file.name !== Song.name) {
+        arr.push(Song);
+      }
+    }
+    this.playlistName.Song = arr;
+      if(this.user != null) {
+        this.cloudService.addSongToPlaylist(this.user, this.playlistName, this.playlistName.title).then(result => {
+          console.log('DONE');
+        }).catch(err => {
+          console.log("ERROR");
+        })
+      }
+
   }
 
   playStream(url) {
