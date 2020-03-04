@@ -1,18 +1,17 @@
-import { AudioService } from "../../../services/audio.service";
-import { CloudService } from "../../../services/cloud.service";
-import { AuthService } from "../../../services/auth.service";
-
-import { NbMenuService, NbMenuItem, NbToastrService } from "@nebular/theme";
-import { OnInit, Input, Component } from "@angular/core";
+import { Component, OnInit, Input, OnDestroy } from "@angular/core";
+import { AudioService } from "src/app/services/audio.service";
+import { CloudService } from "src/app/services/cloud.service";
+import { AuthService } from "src/app/services/auth.service";
+import { NbMenuService, NbToastrService } from "@nebular/theme";
+import { filter, map } from "rxjs/operators";
 
 @Component({
   selector: "app-track",
   templateUrl: "./track.component.html",
   styleUrls: ["./track.component.scss"]
 })
-export class TrackComponent implements OnInit {
-  @Input() file: any;
-  @Input() tag: any;
+export class TrackComponent implements OnInit, OnDestroy {
+  @Input() file;
   likedSongFile: Array<any> = [];
   likedSongId: Array<any> = [];
   Playlists = [];
@@ -25,6 +24,8 @@ export class TrackComponent implements OnInit {
   ];
 
   @Input()
+  tag;
+  @Input()
   isInPlaylist;
   @Input()
   playlistName = "";
@@ -36,7 +37,61 @@ export class TrackComponent implements OnInit {
     private nbMenuService: NbMenuService,
     private toater: NbToastrService
   ) {
-    this.authService.user$.subscribe(userData => {
+    this.getLikedSongData();
+    this.getPlaylistData();
+  }
+
+  ngOnInit() {
+    this.menuPlaylistClick();
+  }
+
+  ngOnDestroy() {
+    this.getLikedSongData().unsubscribe();
+    this.menuPlaylistClick().unsubscribe();
+  }
+
+  menuPlaylistClick() {
+    return this.nbMenuService.onItemClick().subscribe(x => {
+      if (this.tag == x.tag)
+        if (!this.isInPlaylist) {
+          var isExit = false;
+          if (x.tag == this.file.id) {
+            console.log(x.tag + " " + this.file.id);
+            this.Playlists.forEach(data => {
+              if (data.title == x.item.title) {
+                for (const element of data.Song) {
+                  if (element.name == this.file.name) {
+                    isExit = true;
+                    break;
+                  }
+                }
+                if (!isExit) {
+                  data.Song.push(this.file);
+                  this.cloudService
+                    .addSongToPlaylist(this.user, data, data.title)
+                    .then(result => {
+                      console.log("ahihi");
+                      this.toater.show("Thêm thành công", "Thông báo", {
+                        status: "success"
+                      });
+                    })
+                    .catch(err => {
+                      console.log(err.message);
+                    });
+                } else {
+                  this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
+                    status: "warning"
+                  });
+                }
+              }
+            });
+          }
+        }
+    });
+  }
+
+  getLikedSongData() {
+    return this.authService.user$.subscribe(userData => {
       this.user = userData;
       if (this.user) {
         this.cloudService.getLikedSongData(this.user).subscribe(data => {
@@ -62,7 +117,13 @@ export class TrackComponent implements OnInit {
         //   this.items.length = 0;
         //   this.items.push({title: "Remove from playlist"});
         // }
+      }
+    });
+  }
 
+  getPlaylistData() {
+    this.authService.user$.subscribe(user => {
+      if (user != null) {
         this.cloudService.getAllPlaylist(this.user).subscribe(data => {
           this.items.length = 0;
           this.Playlists.length = 0;
@@ -81,76 +142,6 @@ export class TrackComponent implements OnInit {
         });
       }
     });
-  }
-
-  ngOnInit() {
-    // this.nbMenuService.onItemClick()
-    // .pipe(
-    //   filter(({ tag }) => tag === 'my-context-menu'),
-    //   map(({ item: { title } }) => title),
-    // )
-    // .subscribe(title => {
-    //   if (title === 'Add to Playlist') {
-    //   }
-    // });
-
-    this.nbMenuService.onItemClick().subscribe(x => {
-      if (!this.isInPlaylist) {
-        var isExit = false;
-        if (x.tag == this.file.id) {
-          console.log(x.tag + " " + this.file.id);
-          this.Playlists.forEach(data => {
-            if (data.title == x.item.title) {
-              for (const element of data.Song) {
-                if (element.name == this.file.name) {
-                  isExit = true;
-                  break;
-                }
-              }
-              if (!isExit) {
-                data.Song.push(this.file);
-                this.cloudService
-                  .addSongToPlaylist(this.user, data, data.title)
-                  .then(result => {
-                    console.log("ahihi");
-                    this.toater.show("Thêm thành công", "Thông báo", {
-                      status: "success"
-                    });
-                  })
-                  .catch(err => {
-                    console.log(err.message);
-                  });
-              } else {
-                this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
-                  status: "warning"
-                });
-              }
-            }
-          });
-        }
-      }
-    });
-
-    // } else if (this.isInPlaylist) {
-    //   this.nbMenuService.onItemClick().subscribe(async x => {
-    //     if (this.file.id == x.tag) {
-    //       for (const item of this.Playlists) {
-    //         if (item.title == this.playlistName) {
-    //           item.Song = item.Song.filter(song => song.id != this.file.id);
-    //           await this.cloudService
-    //             .addSongToPlaylist(this.user, item, item.title)
-    //             .then(() => {
-    //               console.log("Xoá thành công");
-    //             })
-    //             .catch(() => {
-    //               console.log("ERROR");
-    //             });
-    //         }
-    //       }
-    //       // this.cloudService.addSongToPlaylist(this.user, this.Playlists, x.title);
-    //     }
-    //   });
-    // }
   }
 
   playStream(url) {

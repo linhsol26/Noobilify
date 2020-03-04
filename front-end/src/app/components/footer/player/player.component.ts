@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { StreamState } from 'src/app/models/stream-state.model';
 import { AudioService } from 'src/app/services/audio.service';
 import { CloudService } from 'src/app/services/cloud.service';
@@ -8,7 +8,7 @@ import { CloudService } from 'src/app/services/cloud.service';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent implements OnInit {
+export class PlayerComponent implements OnInit, OnDestroy {
 
   state: StreamState;
 
@@ -16,14 +16,21 @@ export class PlayerComponent implements OnInit {
     public audioService: AudioService,
     public cloudService: CloudService
   ) {
-    this.audioService.getState().subscribe(state => {
-      this.state = state;
-    });
-
+    this.getState();
     this.audioService.audioObj.addEventListener('ended', () => this.next());
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.getState().unsubscribe();
+  }
+
+  getState() {
+    return this.audioService.getState().subscribe(state => {
+      this.state = state;
+    });
   }
 
   playStream(url) {
