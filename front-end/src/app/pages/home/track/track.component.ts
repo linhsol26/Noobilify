@@ -2,11 +2,8 @@ import { AudioService } from "../../../services/audio.service";
 import { CloudService } from "../../../services/cloud.service";
 import { AuthService } from "../../../services/auth.service";
 
-import { filter, map, take, auditTime, debounce, debounceTime } from "rxjs/operators";
 import { NbMenuService, NbMenuItem, NbToastrService } from "@nebular/theme";
-import { Observable, interval } from "rxjs";
 import { OnInit, Input, Component } from "@angular/core";
-import { element } from "protractor";
 
 @Component({
   selector: "app-track",
@@ -21,10 +18,14 @@ export class TrackComponent implements OnInit {
   Playlists = [];
   user: any;
 
-  items = [];
+  items = [
+    {
+      title: ""
+    }
+  ];
 
   @Input()
-  isInPlaylist = false;
+  isInPlaylist;
   @Input()
   playlistName = "";
 
@@ -93,48 +94,43 @@ export class TrackComponent implements OnInit {
     //   }
     // });
 
-    // this.nbMenuService.onItemClick = function() {
-    //   return new Observable(x => {
-    //     console.log(x.);
-    //   });
-    // }
-    if (!this.isInPlaylist) {
-      this.nbMenuService
-        .onItemClick().pipe()
-        .subscribe(async x => {
-          var isExit = false;
-          if (x.tag == this.file.id) {
-             this.Playlists.forEach(data => {
-              if (data.title == x.item.title) {
-                for (const element of data.Song) {
-                  if (element.name == this.file.name) {
-                    isExit = true;
-                    break;
-                  }
-                }
-                if (!isExit) {
-                  data.Song.push(this.file);
-                  this.cloudService
-                    .addSongToPlaylist(this.user, data, data.title)
-                    .then((result) => {
-                      console.log('ahihi');
-                       this.toater.show("Thêm thành công", "Thông báo", {
-                        status: "success"
-                      });
-                    })
-                    .catch(err => {
-                      console.log(err.message);
-                    });
-                } else {
-                  this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
-                    status: "warning"
-                  });
+    this.nbMenuService.onItemClick().subscribe(x => {
+      if (!this.isInPlaylist) {
+        var isExit = false;
+        if (x.tag == this.file.id) {
+          console.log(x.tag + " " + this.file.id);
+          this.Playlists.forEach(data => {
+            if (data.title == x.item.title) {
+              for (const element of data.Song) {
+                if (element.name == this.file.name) {
+                  isExit = true;
+                  break;
                 }
               }
-            });
-          }
-        });
-    }
+              if (!isExit) {
+                data.Song.push(this.file);
+                this.cloudService
+                  .addSongToPlaylist(this.user, data, data.title)
+                  .then(result => {
+                    console.log("ahihi");
+                    this.toater.show("Thêm thành công", "Thông báo", {
+                      status: "success"
+                    });
+                  })
+                  .catch(err => {
+                    console.log(err.message);
+                  });
+              } else {
+                this.toater.show("Playlist đã tồn tại bài này", "Thông báo", {
+                  status: "warning"
+                });
+              }
+            }
+          });
+        }
+      }
+    });
+
     // } else if (this.isInPlaylist) {
     //   this.nbMenuService.onItemClick().subscribe(async x => {
     //     if (this.file.id == x.tag) {
